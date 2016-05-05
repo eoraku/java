@@ -1,0 +1,10 @@
+<!ELEMENT mapping  			(action-mapping)* >
+
+<!ELEMENT action-mapping    (sql)* >
+<!ATTLIST action-mapping	url      CDATA #REQUIRED
+							model    CDATA                     ""
+							view     CDATA                     "">
+							
+<!ELEMENT sql    			(#PCDATA)>
+<!ATTLIST sql				id      CDATA #REQUIRED
+							type    CDATA                     "">

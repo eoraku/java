@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapping PUBLIC "-//iTVMG Web MVC//DTD WMVC Configuration 1.0//EN" "mapping.dtd">
+
+<mapping>
+	<action-mapping url="/intro.do" model="com.itvmg.model.Controler" view="/jsp/controler.jsp" />	
+	<action-mapping url="/menu.do" model="com.itvmg.model.page.Menu" view="/jsp/page/menu.jsp" />
+	<action-mapping url="/ajax.do" model="com.itvmg.model.Ajax" />
+		
+	<!-- 1. 항공정보 -->
+	<!-- 항공정보 -->
+	<action-mapping url="/airline.do" model="com.itvmg.model.page.airline.AirLine" view="/jsp/page/airline/airline.jsp" />
+	<!-- 현재공항날씨 -->
+	<action-mapping url="/airlineweather.do" model="com.itvmg.model.page.airline.AirLineWeather" view="/jsp/page/airline/airlineweather.jsp" />
+	
+	<!-- 2. 날씨정보 -->
+	<!-- 육상 -->
+	<action-mapping url="/land.do" model="com.itvmg.model.page.weather.Land" view="/jsp/page/weather/land.jsp" />
+	<action-mapping url="/landdetail.do" model="com.itvmg.model.page.weather.LandDetail" view="/jsp/page/weather/landdetail.jsp" />
+	<!-- 해상 -->
+	<action-mapping url="/sea.do" model="com.itvmg.model.page.weather.Sea" view="/jsp/page/weather/sea.jsp" />
+	<action-mapping url="/seadetail.do" model="com.itvmg.model.page.weather.SeaDetail" view="/jsp/page/weather/seadetail.jsp" />
+	<!-- 도서 -->
+	<action-mapping url="/city.do" model="com.itvmg.model.page.weather.City" view="/jsp/page/weather/city.jsp" />
+	<action-mapping url="/citydetail.do" model="com.itvmg.model.page.weather.CityDetail" view="/jsp/page/weather/citydetail.jsp" />
+	<!-- 올레정보 -->
+	<action-mapping url="/olle.do" model="com.itvmg.model.page.weather.Olle" view="/jsp/page/weather/olle.jsp" />
+	<action-mapping url="/olledetail.do" model="com.itvmg.model.page.weather.LandDetail" view="/jsp/page/weather/olledetail.jsp" />
+	<!-- 전국해상 -->
+	<action-mapping url="/nationalsea.do" model="com.itvmg.model.page.weather.NationalSea" view="/jsp/page/weather/nationalsea.jsp" />
+	<action-mapping url="/nationalseadetail.do" model="com.itvmg.model.page.weather.NationalSeaDetail" view="/jsp/page/weather/nationalseadetail.jsp" />
+	<!-- 주간날씨 -->
+	<action-mapping url="/weekly.do" model="com.itvmg.model.page.weather.Weekly" view="/jsp/page/weather/weekly.jsp" />
+	<!-- 현재전국날씨 -->
+	<action-mapping url="/national.do" model="com.itvmg.model.page.weather.National" view="/jsp/page/weather/national.jsp" />
+	<!-- 기상특보 -->
+	<action-mapping url="/special.do" model="com.itvmg.model.page.weather.Special" view="/jsp/page/weather/special.jsp" />
+	
+	<!-- 3. 경조사 -->
+	<!-- 결혼 -->
+	<action-mapping url="/marry.do" model="com.itvmg.model.page.familyevent.Marry" view="/jsp/page/familyevent/marry.jsp" />
+	<!-- 부고 -->
+	<action-mapping url="/death.do" model="com.itvmg.model.page.familyevent.Death" view="/jsp/page/familyevent/death.jsp" />
+	
+	<!-- 4. 채용 -->
+	<action-mapping url="/job.do" model="com.itvmg.model.page.job.Job" view="/jsp/page/job/job.jsp" />
+	
+	<!-- 5. 기타 -->
+	<!-- 행사 -->
+	<action-mapping url="/event.do" model="com.itvmg.model.page.etc.Event" view="/jsp/page/etc/event.jsp" />
+	<!-- 우리동네소식 -->
+	<action-mapping url="/town.do" model="com.itvmg.model.page.etc.Town" view="/jsp/page/etc/town.jsp" />
+	<!-- 금주의VOD -->
+	<action-mapping url="/vod.do" model="com.itvmg.model.page.etc.VOD" view="/jsp/page/etc/vod.jsp" />
+	<!-- 모임/단체 소식 -->
+	<!-- <action-mapping url="/club.do" model="com.itvmg.model.page.etc.Club" view="/jsp/page/etc/club.jsp" /> -->
+	
+	<!-- 팝업 -->
+	<!-- 1. 메세지팝업 -->
+	<action-mapping url="/msgpopup.do" view="/jsp/popup/msgpopup.jsp" />
+	<!-- 1. 시스템팝업 -->
+	<action-mapping url="/syspopup.do" view="/jsp/popup/syspopup.jsp" />
+	<!-- 2. 이미지팝업 -->
+	<action-mapping url="/imgpopup.do" view="/jsp/popup/imgpopup.jsp" />
+	<!-- 3. 항공팝업 -->
+	<action-mapping url="/airlinepopup.do" view="/jsp/popup/airlinepopup.jsp" />
+	<!-- 4. 날씨 팝업 -->
+	<action-mapping url="/weatherpopup.do" view="/jsp/popup/weatherpopup.jsp" />
+	<!-- 5. 모임/단체 소식 팝업 -->
+	<action-mapping url="/clubpopup.do" view="/jsp/popup/clubpopup.jsp" />
+	
+	<!-- 테스트 페이지 -->
+	<action-mapping url="/template.do" view="/jsp/page/template.jsp" />
+</mapping>

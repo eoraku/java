@@ -1,0 +1,49 @@
+<html>
+
+<!-- ** 기관측 샘플 소스 ** -->
+<head>
+<title>::::세틀뱅크에 오신 걸 환영합니다::::</title>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+
+//---------------------------------------------------------  
+// (2) 성명 조회  
+function TEST() {
+
+	//(post 방식)
+	var f = document.nameSer;
+	f.action	=	"http://www.settlebank.co.kr/servlet/NameSerMgrServlet2?ACT_TP=ACCOUNT_NAME_DEF";
+	f.target	=	'win';
+	window.open("","win","height=370,width=320,status=yes");
+	f.submit();
+	opener= null ;
+        opener =self;
+        self.close();
+
+	// ( get방식 ) Parameter 명  : ① 기관ID: corpID , ② 로그인 ID : ID.
+//		 window.open("https://www.settlebank.co.kr/servlet/NameSerMgrServlet2?ACT_TP=ACCOUNT_NAME_DEF&corpID=20000040&ID=gmarket","win","height=370,width=320,status=yes")		
+	
+}
+
+//-->
+</script>
+</head>
+
+<body onLoad="javascript:TEST();">
+
+<!--post 방식 사용 시 form 적용-->
+<form name="nameSer" method="post">
+<input type="hidden" name="corpID" value="20000121">
+<input type="hidden" name="ID" value="kctv77">
+<p>
+<!-- 여기서 [성명인증 조회]는 기관측에서 팝업 창을 띄울 버튼을 임시로 텍스트화 해 두었다 -->
+<!-- <p align="center" valign="middle"><a href="javascript:TEST();">[성명 조회]</a> 
+<p> -->
+
+
+</form>
+<script>
+window.close();
+<script>
+</body>
+</html>

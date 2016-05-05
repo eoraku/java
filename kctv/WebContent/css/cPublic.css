@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+#content_top{background:url(../images/cPublic/bg_content_title.gif) repeat-x;}
+
+#harmonyDream{width:700px;margin-top:10px;}
+#harmonyDream li{float:left;}
+#harmonyDream p{margin-top:11px;}
+#harmonyDream div{margin-left:15px;}
+#harmonyDream #harmonyDream_award{border-width:1px 0 0 1px;width:80%;}
+#harmonyDream #harmonyDream_award b{color:#a01b30;}
+#harmonyDream #harmonyDream_award th{background-color:#fee499;}
+#harmonyDream #harmonyDream_award, #harmonyDream_award th, #harmonyDream_award td{border-color:#531403;border-style:solid;}
+#harmonyDream #harmonyDream_award th, #harmonyDream_award td{border-width:0 1px 1px 0;padding:5px;}
+
+#harmonyDream a:link{color:#ffffff;text-decoration:none;}
+#harmonyDream a:visited{color:#ffffff;text-decoration:none;}
+#harmonyDream a:active{color:#ffffff;text-decoration:none;}
+#harmonyDream a:hover{color:#a01b30;text-decoration:none;}

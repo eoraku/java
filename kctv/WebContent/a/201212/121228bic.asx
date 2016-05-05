@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>델리스파이스의 맛있는 탐라여행~!(최종회)</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/121228bic.wmv"/>
+	</Entry>
+</ASX>

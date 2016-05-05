@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>가을이 시작되는 손맛 - 벵에돔을 만나다</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/120905sea.wmv"/>
+	</Entry>
+</ASX>

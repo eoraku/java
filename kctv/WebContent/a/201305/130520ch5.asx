@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>바람의 섬 제주 '풍력에서 미래를 찾다'</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/mad/130520ch5.wmv"/>
+	</Entry>
+</ASX>

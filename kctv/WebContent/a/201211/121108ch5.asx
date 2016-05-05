@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>2012KCTV합창페스티벌 - 참가팀 탐방 2</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/mad/121108ch5.wmv"/>
+	</Entry>
+</ASX>

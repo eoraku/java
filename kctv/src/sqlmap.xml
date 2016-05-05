@@ -1,0 +1,1419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="kctv">
+	<typeAlias alias="countUpdate" type="kctv.web.common.CountUpdate" />
+	<typeAlias alias="user" type="kctv.web.user.User" />
+	<typeAlias alias="userInfoBasic" type="kctv.web.user.UserInfoBasic" />
+	<typeAlias alias="zipcode" type="kctv.web.user.Zipcode" />
+	<typeAlias alias="chkLogin" type="kctv.web.user.ChkLogin" />
+	<typeAlias alias="chkEmail" type="kctv.web.user.ChkEmail" />
+
+	<typeAlias alias="boardParameter" type="kctv.web.board.BoardParameter" />
+	<typeAlias alias="boardCategory" type="kctv.web.board.BoardCategory" />
+	<typeAlias alias="boardConfig" type="kctv.web.board.BoardConfig" />
+	<typeAlias alias="board" type="kctv.web.board.Board" />
+	<typeAlias alias="pds" type="kctv.web.board.Pds" />
+	<typeAlias alias="comment" type="kctv.web.board.Comment" />
+
+	<typeAlias alias="vodParameter" type="kctv.web.vod.VodParameter" />
+	<typeAlias alias="vodCode" type="kctv.web.vod.VodCode" />
+	<typeAlias alias="vod" type="kctv.web.vod.Vod" />
+	<typeAlias alias="vodWeek" type="kctv.web.vod.VodWeek" />
+
+	<typeAlias alias="mvno" type="kctv.web.mvno.Mvno" />
+	<typeAlias alias="mvnoContact" type="kctv.web.mvno.MvnoContactDTO" />
+
+	<typeAlias alias="schedule" type="kctv.web.schedule.Schedule" />
+	<typeAlias alias="leftMenu" type="kctv.web.cms.LeftMenu" />
+	<typeAlias alias="cmContent" type="kctv.web.cms.CmContent" />
+	<typeAlias alias="cmSubMenu" type="kctv.web.cms.CmSubMenu" />
+
+	<typeAlias alias="news" type="kctv.web.news.News" />
+	<typeAlias alias="newsParameter" type="kctv.web.news.NewsParameter" />
+
+	<typeAlias alias="searchParameter" type="kctv.web.search.SearchParameter" />
+	<typeAlias alias="searchValue" type="kctv.web.search.SearchValue" />
+
+	<typeAlias alias="popup" type="kctv.web.common.Popup" />
+
+	<typeAlias alias="smsParameter" type="kctv.sms.SmsParameter" />
+	<typeAlias alias="sms" type="kctv.sms.TWEBSVR" />
+
+	<typeAlias alias="xmlParameter" type="kctv.xml.XmlParameter" />
+
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="string" type="java.lang.String" />
+
+	<update id="doUpdateUserPasswd" parameterClass="user">
+		UPDATE mm_user SET mmus_passwd=P_CRYTO.ENC_MD5(#passwd#) WHERE mmus_id = #id# AND mmus_name = #name#
+	</update>
+	
+	<insert id="doInsertSecede" parameterClass="chkLogin">
+		INSERT INTO mm_secede (mmse_mmus_id, mmse_comment, mmse_date) VALUES (#userid#, '홈페이지 본인 탈퇴요청', sysdate)
+	</insert>
+	
+	<update id="doUpdateDelUser" parameterClass="chkLogin">
+		UPDATE mm_user SET mmus_passwd = ' ', mmus_name = ' ', mmus_jumin = ' ', mmus_zipcode = ' ', mmus_address1 = ' ', mmus_address2 = ' ', mmus_phone = ' ', mmus_cellphone = ' ', mmus_email = ' ' WHERE mmus_id=#userid# AND mmus_passwd=P_CRYTO.ENC_MD5(#userpw#)
+	</update>
+	
+	<select id="getUserByRealName" parameterClass="user" resultClass="user">
+		SELECT mmus_id AS id, mmus_name AS name, mmus_jumin AS jumin, mmus_cellphone AS cellphone, mmus_email AS email FROM MM_USER WHERE mmus_id = #id# AND mmus_name = #name# AND mmus_jumin like #jumin#||'%'
+	</select>
+	
+	<select id="getUserListByNamecheck" parameterClass="user" resultClass="user">
+		SELECT mmus_id AS id, mmus_name AS name, mmus_jumin AS jumin, mmus_cellphone AS cellphone, mmus_email AS email FROM MM_USER WHERE mmus_name = #name# AND mmus_jumin like #jumin#||'%'
+	</select>
+	
+	<update id="deleteMvnoContact" parameterClass="mvnoContact">
+		UPDATE MVNO_CONTACT_SIGNUP SET DEL_FLAG = 1, DEL_DATE = sysdate, MOD_ADMIN = #mod_admin# WHERE SEQ = $seq$
+	</update>
+	<update id="doFinishMvnoContact" parameterClass="mvnoContact">
+		UPDATE MVNO_CONTACT_SIGNUP SET REPLY_FLAG = 1, REPLY_DATE = sysdate, MOD_ADMIN = #mod_admin# WHERE SEQ = $seq$
+	</update>
+	
+	<select id="getMvnoContactList" resultClass="mvnoContact">
+		SELECT SEQ, REG_DATE, NAME, PHONE, ZIPCODE, ADDRESS, SERVICE, MEMO FROM MVNO_CONTACT_SIGNUP WHERE DEL_FLAG = 0 AND REPLY_FLAG = 0 ORDER BY REG_DATE
+	</select>
+
+	<select id="getMvnoContactListCount" resultClass="int">
+		SELECT COUNT(SEQ) FROM MVNO_CONTACT_SIGNUP WHERE DEL_FLAG = 0 AND REPLY_FLAG = 0
+	</select>
+
+	<insert id="doInsertMvnoContact" parameterClass="mvnoContact">
+	<![CDATA[
+		INSERT INTO MVNO_CONTACT_SIGNUP (SEQ, REG_DATE, NAME, PHONE, ZIPCODE, ADDRESS, SERVICE, MEMO) VALUES ($seq$, sysdate, #name#, #phone#, #zipcode#, #address#, #service#, #memo#)
+		]]>
+	</insert>
+
+	<select id="getNextInsertSeq" parameterClass="string" resultClass="int">
+		<![CDATA[
+		SELECT NVL(MAX(SEQ)+1, 1) as SEQ FROM $table_name$
+		]]>
+	</select>
+
+	<select id="getPhoneList" parameterClass="string" resultClass="mvno">
+		<![CDATA[
+		SELECT SEQ, MANUFACTURER, SERVICEABLE_FLAG, MMS_FLAG, DATA_FLAG, NOTE, MODEL_NAME FROM MVNO_SERVICEABLE_PHONE WHERE MANUFACTURER = #manufacturer# 
+		]]>
+	</select>
+
+	<select id="searchPhoneList" parameterClass="string"
+		resultClass="mvno">
+		<![CDATA[
+		SELECT SEQ, MANUFACTURER, SERVICEABLE_FLAG, MMS_FLAG, DATA_FLAG, NOTE, MODEL_NAME FROM MVNO_SERVICEABLE_PHONE WHERE REGEXP_LIKE(MODEL_NAME, #model_name# ,'i') 
+		]]>
+	</select>
+
+	<update id="cntUpdate" parameterClass="countUpdate">
+		<![CDATA[
+		update $table$ set $field$ = to_number($field$) + 1 where $where$
+		]]>
+	</update>
+
+	<update id="cntUpdateM" parameterClass="countUpdate">
+		<![CDATA[
+		update $table$ set $field$ = to_number($field$) - 1 where $where$
+		]]>
+	</update>
+
+	<select id="cntUserid" parameterClass="string" resultClass="int">
+		<![CDATA[
+		select count(*) from mm_user where mmus_id=#userid#
+		]]>
+	</select>
+
+	<select id="cntEmail" parameterClass="string" resultClass="int">
+		<![CDATA[
+		select count(*) from mm_user where mmus_email=#email#
+		]]>
+	</select>
+
+	<select id="cntEmailUserid" parameterClass="chkEmail"
+		resultClass="int">
+		<![CDATA[
+		select count(*) from mm_user where mmus_id!=#userid# and mmus_email=#email#
+		]]>
+	</select>
+
+	<select id="chkLoginEncode" parameterClass="chkLogin"
+		resultClass="int">
+		<![CDATA[
+		select count(*) from mm_user where mmus_id=#userid# and mmus_passwd=P_CRYTO.ENC_MD5(#userpw#)
+		]]>
+	</select>
+
+	<select id="chkLogin" parameterClass="chkLogin" resultClass="int">
+		<![CDATA[
+		select count(*) from mm_user where mmus_id=#userid# and mmus_passwd=#userpw#
+		]]>
+	</select>
+
+	<!-- 인기 검색어 -->
+	<select id="indexListTopSearch" resultClass="string">
+		<![CDATA[
+		select * from (select text_view from search_text where regdate >= (sysdate-7) order by text_cnt desc) where rownum<=5
+		]]>
+	</select>
+
+	<!-- 공지사항 리스트 -->
+	<select id="indexListNotice" parameterClass="int" resultClass="board">
+		<![CDATA[
+		select * from (select board_uid, substr(board_title,1,30) board_title, to_char(board_regdate, 'yy-mm-dd') as board_regdate from bd_notice order by board_regdate desc, board_uid desc) where rownum<=#row#
+		]]>
+	</select>
+
+	<select id="getSchedule" parameterClass="string" resultClass="string">
+		<![CDATA[
+		select content from sch_list where firstdt=#sch_date#
+		]]>
+	</select>
+
+	<!-- 메인페이지 화제의 영상 -->
+	<select id="indexListHotVod" resultClass="vod">
+		<![CDATA[
+		select * from (
+			select num, vodcode, title, urlfile, photo_url 
+				from vodlist where firstdt >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' 
+				order by view_cnt desc
+			) where rownum<=5
+		]]>
+	</select>
+
+	<!-- VOD 리스트 검색 -->
+	<select id="listVod" parameterClass="vodParameter" resultClass="vod">
+		<![CDATA[
+		select num, subcd, title, urlfile, photo_url, vodcode,substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt,view_cnt
+			,(select code_name from cd_list where trim(code_number)=trim(b.subcd)) code_name from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select num, subcd, title, urlfile, vodcode, photo_url,firstdt,view_cnt,wdate from vodlist 
+						where web_view='1' $codeAnd$ $schAnd$
+						order by firstdt desc, num desc) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<select id="cntVod" parameterClass="vodParameter" resultClass="int">
+		<![CDATA[
+		select count(*) from vodlist where web_view='1' $codeAnd$ $schAnd$
+		]]>
+	</select>
+
+	<select id="listVodFlv" parameterClass="vodParameter"
+		resultClass="vod">
+		<![CDATA[
+		select num, subcd, title, urlfile, photo_url, vodcode,substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt,view_cnt
+			,(select code_name from cd_list where trim(code_number)=trim(b.subcd)) code_name from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select num, subcd, title, urlfile, vodcode, photo_url,firstdt,view_cnt,wdate from vodlist 
+						where web_view='1' and flv='1' $codeAnd$ $schAnd$
+						order by firstdt desc) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<select id="cntVodFlv" parameterClass="vodParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) from vodlist where web_view='1' and flv='1' $codeAnd$ $schAnd$
+		]]>
+	</select>
+
+	<!-- 이미지 있는 최신 뉴스 1개 검색 -->
+	<select id="indexListLatestNewsImg" parameterClass="string"
+		resultClass="news">
+		<![CDATA[
+		select num, name, title, svrfile2 
+			from jctv_news2 
+			where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and group_flag in($groups$) and svrfile2 is not null 
+				and eng is null and chi is null and rownum<=1 
+			order by ldate desc
+		]]>
+	</select>
+
+	<!-- 이미지 있는 영어뉴스 1개 검색 -->
+	<select id="indexListLatestNewsImgEng" resultClass="news">
+		<![CDATA[
+		select num, name, title, svrfile2 
+			from jctv_news2 
+			where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and svrfile2 is not null 
+				and eng is not null and chi is null and rownum<=1 
+			order by ldate desc
+		]]>
+	</select>
+
+	<!-- 이미지 있는 중국어뉴스 1개 검색 -->
+	<select id="indexListLatestNewsImgChi" resultClass="news">
+		<![CDATA[
+		select num, name, title, svrfile2 
+			from jctv_news2 
+			where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and svrfile2 is not null 
+				and eng is null and chi is not null and rownum<=1 
+			order by ldate desc
+		]]>
+	</select>
+
+	<select id="indexListLatestNews" parameterClass="string"
+		resultClass="news">
+		<![CDATA[
+		select num, name, title, '' svrfile2 
+			from jctv_news2 
+			where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and group_flag in ($groups$) and svrfile2 is null 
+				and eng is null and chi is null and rownum<=5 
+			order by ldate desc
+		]]>
+	</select>
+	<select id="indexListLatestNewsEng" resultClass="news">
+		<![CDATA[
+		select num, name, title, '' svrfile2 
+			from jctv_news2 
+			where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and svrfile2 is null 
+				and eng is not null and chi is null and rownum<=5 
+			order by ldate desc
+		]]>
+	</select>
+	<select id="indexListLatestNewsChi" resultClass="news">
+		<![CDATA[
+		select num, name, title, '' svrfile2 
+			from jctv_news2 
+			where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and svrfile2 is null 
+				and eng is null and chi is not null and rownum<=5 
+			order by ldate desc
+		]]>
+	</select>
+
+	<!-- 행사 & 알림 -->
+	<select id="indexEvent" resultClass="string">
+		<![CDATA[
+		select bd_contents from BD_JAMAK where bd_uid = '393'
+		]]>
+	</select>
+
+	<select id="listZipcode" parameterClass="string" resultClass="zipcode">
+		<![CDATA[
+		select zp_zipcode, zp_sido, zp_gugun, zp_dong, zp_bunji from et1_zipcode where zp_dong like '%'||#kw#||'%' order by zp_uid desc
+		]]>
+	</select>
+
+	<select id="getAddress" parameterClass="string" resultClass="zipcode">
+		<![CDATA[
+		select zp_sido,zp_gugun,zp_dong from et_zipcode where zp_zipcode=#zipcode# and rownum<=1
+		]]>
+	</select>
+
+	<select id="cntZipcode" parameterClass="string" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from et1_zipcode where zp_dong like '%'||#kw#||'%'
+		]]>
+	</select>
+
+	<insert id="insertUser" parameterClass="user">
+		<![CDATA[
+		insert into mm_user (
+			mmus_id,
+			mmus_passwd,
+			mmus_name,
+			mmus_jumin,
+			mmus_zipcode,
+			mmus_address1,
+			mmus_address2,
+			mmus_phone,
+			mmus_cellphone,
+			mmus_email,
+			mmus_regdate,
+			mmus_mailing,
+			mmus_hit,
+			mmus_level,
+			mmus_status,
+			mmus_intro,
+			mmus_group
+			)
+		values (
+			#id#,
+			P_CRYTO.ENC_MD5(#passwd#),
+			#name#,
+			#jumin#,
+			#zipcode#,
+			#address1#,
+			#address2#,
+			#phone#,
+			#cellphone#,
+			#email#,
+			sysdate,
+			#mailing#,
+			#hit#,
+			#level#,
+			#status#,
+			#intro#,
+			#group#
+		)
+		]]>
+	</insert>
+
+	<update id="updateUserCnt" parameterClass="string">
+		<![CDATA[
+		update mm_user set mmus_accessdate=sysdate, mmus_hit=mmus_hit+1 where mmus_id=#id#
+		]]>
+	</update>
+
+	<!-- 사이트맵 그룹 메뉴 검색 -->
+	<select id="getSitemap" parameterClass="int" resultClass="leftMenu">
+		<![CDATA[
+		select cmme_name "name", decode(cmme_direct_uid,0,cmme_uid,cmme_direct_uid) "uid"
+				, cmme_link "link", cmme_link_target "link_target", cmme_direct_uid "direct_uid"
+			from cm_menu a, cm_contents b 
+			where cmme_uid = cmct_cmme_uid(+) 
+				and cmme_d1 = #cmme_no# 
+				and cmme_is_view = 1 and cmme_d2 >= 1 and cmme_depth<3 
+			order by cmme_d1, cmme_d2, cmme_d3, cmme_d4, cmme_d5
+		]]>
+	</select>
+
+	<select id="cmsLeftMenu" parameterClass="int" resultClass="leftMenu">
+		<![CDATA[
+		select cmme_name "name", cmme_d1 "d1", cmme_d2 "d2", cmme_d3 "d3", cmme_d4 "d4", cmme_d5 "d5", cmme_parent "parent",cmme_depth "depth", decode(cmme_direct_uid,0,cmme_uid,cmme_direct_uid) "uid", cmme_link "link", cmme_link_target "link_target", cmme_direct_uid "direct_uid", cmct_frame_id "frame_id" 
+				,(select count(*) from cm_menu where cmme_parent=a.cmme_uid) "cnt_child"
+			from cm_menu a, cm_contents b 
+			where cmme_uid = cmct_cmme_uid(+) 
+				and cmme_d1 = (select cmme_d1 from cm_menu where cmme_uid=#muid#) 
+				and cmme_is_view = 1 and cmme_d2 >= 1 and cmme_depth<4 
+			order by cmme_d1, cmme_d2, cmme_d3, cmme_d4, cmme_d5
+		]]>
+	</select>
+
+	<!-- muid에 해당하는 메뉴명 조회 -->
+	<select id="getMenuName" parameterClass="int" resultClass="string">
+		select cmme_name from cm_menu where cmme_uid=#muid#
+	</select>
+
+	<!-- cm_contents 조회 -->
+	<select id="getCmContent" parameterClass="int" resultClass="cmContent">
+		<![CDATA[
+		select cmct_cmme_uid "cmme_uid",cmct_frame_id "frame_id",cmct_type "type",cmct_charge "charge",cmct_is_hit "is_hit",cmct_hit "hit"
+				,lower(cmct_board_id) "board_id",cmct_exefile "exefile",cmct_regdate "regdate",cmct_modifydate "modifydate",cmct_adad_id "adad_id",nvl(cmct_ahead_type,0) "ahead_type"
+			from cm_contents 
+			where cmct_cmme_uid=#muid#
+		]]>
+	</select>
+
+	<!-- cm 메뉴중 하위 메뉴를 조회 -->
+	<select id="getCmSubMenu" parameterClass="int" resultClass="cmSubMenu">
+		<![CDATA[
+		select cmme_uid,cmme_name,cmct_type from cm_menu a,cm_contents b 
+			where a.cmme_parent=(select cmme_parent from cm_menu where cmme_uid=#muid#) 
+				and a.cmme_is_view=1 and a.cmme_uid=b.cmct_cmme_uid order by cmme_d4
+		]]>
+	</select>
+
+	<select id="getCmSubType" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select cmct_type from cm_contents where cmct_cmme_uid=#subid#
+		]]>
+	</select>
+
+	<!-- 상단 콘텐츠 내용 조회 -->
+	<select id="getCmContentAhead" parameterClass="int" resultClass="string">
+		<![CDATA[
+		select cmct_ahead_contents from cm_contents where cmct_cmme_uid=#muid#
+		]]>
+	</select>
+
+	<!-- 콘텐츠 실행파일 조회 -->
+	<select id="getCmContentExefile" parameterClass="int"
+		resultClass="string">
+		<![CDATA[
+		select cmct_exefile from cm_contents where cmct_cmme_uid=#muid#
+		]]>
+	</select>
+
+	<!-- 상단 콘텐츠 내용과 메뉴 내용 가져오기 -->
+	<select id="getCmContentIntro" parameterClass="int" resultClass="cmContent">
+		<![CDATA[
+		select cmct_contents "contents",cmct_ahead_contents "ahead_contents" from cm_contents where cmct_cmme_uid=#muid#
+		]]>
+	</select>
+
+	<select id="getMainCd" resultClass="vodCode">
+		<![CDATA[
+		select code_uid,code_name,code_parent,code_number from cd_list where code_depth=1 and code_is_view=1 order by code_d1
+		]]>
+	</select>
+
+	<select id="getSubCd" parameterClass="int" resultClass="vodCode">
+		<![CDATA[
+		select code_uid,code_name,code_parent,code_number from cd_list where code_parent=#maincd# and code_depth=2 and code_is_view=1 order by code_d2
+		]]>
+	</select>
+
+	<update id="updateUserBasic" parameterClass="userInfoBasic">
+		<![CDATA[
+		update mm_user set
+				mmus_zipcode = #zipcode#,
+				mmus_address1 = #address1#,
+				mmus_address2 = #address2#,
+				mmus_phone = #phone#,
+				mmus_cellphone = #cellphone#,
+				mmus_email = #email#
+			where mmus_id = #id#
+		]]>
+	</update>
+
+	<update id="updateUserPasswd" parameterClass="chkLogin">
+		<![CDATA[
+		update mm_user set mmus_passwd = P_CRYTO.ENC_MD5(#userpw#) where mmus_id = #userid#
+		]]>
+	</update>
+
+	<select id="getUserInfoBasic" parameterClass="string"
+		resultClass="userInfoBasic">
+		<![CDATA[
+		select mmus_id id,mmus_name name,mmus_zipcode zipcode,mmus_address1 address1,mmus_address2 address2,mmus_phone phone,mmus_cellphone cellphone,mmus_email email,mmus_regdate regdate,mmus_accessdate accessdate,mmus_mailing mailing,mmus_level "level",mmus_status status from mm_user where mmus_id=#userid# 
+		]]>
+	</select>
+
+	<select id="getBoardConfig" parameterClass="string" resultClass="boardConfig">
+		<![CDATA[
+		select cfg_board_id,cfg_board_name,cfg_board_table,cfg_is_file,cfg_is_notice,cfg_is_secret,cfg_is_category,cfg_is_comment,cfg_is_reply,cfg_is_vote
+				,cfg_is_memberboard,cfg_is_formmail,cfg_is_group,cfg_header,cfg_footer,cfg_skin_list,cfg_skin_read,cfg_skin_write,cfg_skin_pwd
+				,cfg_skin_comment,cfg_row_per_page,cfg_page_per_block,cfg_limit_depth,cfg_is_image_view,cfg_max_image_size,cfg_allow_file
+				,cfg_max_filesize,cfg_max_file_cnt,cfg_grant_list,cfg_grant_read,cfg_grant_write,cfg_grant_comment
+			from bd_config 
+			where cfg_board_id=#boardId#
+		]]>
+	</select>
+
+	<select id="getPgBoardConfig" parameterClass="string"
+		resultClass="boardConfig">
+		<![CDATA[
+		select cfg_board_name,cfg_board_table,cfg_is_file,cfg_is_notice,cfg_is_secret,cfg_is_comment,cfg_is_reply,cfg_is_vote
+				,cfg_is_memberboard,cfg_is_formmail,cfg_is_group,cfg_header,cfg_footer,cfg_skin_list,cfg_skin_read,cfg_skin_write,cfg_skin_pwd
+				,cfg_skin_comment,cfg_row_per_page,cfg_page_per_block,cfg_limit_depth,cfg_is_image_view,cfg_max_image_size,cfg_allow_file
+				,cfg_max_filesize,cfg_max_file_cnt,cfg_grant_list,cfg_grant_read,cfg_grant_write,cfg_grant_comment
+			from pg_config 
+			where cfg_group_id=#groupId#
+		]]>
+	</select>
+
+	<!-- 게시글 숫자 조회 -->
+	<select id="boardCnt" parameterClass="boardParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) "cnt" from $boardId$ $listWhere$
+		]]>
+	</select>
+
+	<!-- 게시글 리스트 가져오기 -->
+	<select id="boardList" parameterClass="boardParameter"
+		resultClass="board">
+		<![CDATA[
+		select board_uid,board_fid,board_step,board_depth,board_title,board_name,board_is_notice,to_char(board_regdate,'YYYY-MM-DD') board_regdate,case when board_regdate+1>sysdate then '1' else '0' end new_icon,board_hit,board_comment_cnt,nvl(board_cate_uid,0) board_cate_uid $listField1$ from (
+			select rownum as linenum,a.* $listField2$ from (
+				select * from (
+					select board_uid,board_fid,board_step,board_depth,board_title,board_name,board_regdate,board_hit,board_comment_cnt,board_cate_uid,board_is_notice 
+						from $boardId$ $listWhere$
+						order by board_is_notice desc,board_fid desc,board_step asc) where rownum<=#rowEnd#
+				) a $listJoin$
+			) $fileJoin$ where linenum>=#rowBegin# $fileOrder$
+		]]>
+	</select>
+
+	<!-- 카테고리 이름 조회 -->
+	<select id="getCategoryName" parameterClass="boardCategory"
+		resultClass="string">
+		<![CDATA[
+		select cate_name from $boardId$_category where cate_uid=#cate_uid#
+		]]>
+	</select>
+
+	<!-- 게시판 카테고리 목록 조회 -->
+	<select id="boardCategoryList" parameterClass="string"
+		resultClass="boardCategory">
+		<![CDATA[
+		select * from $boardId$_category order by cate_uid
+		]]>
+	</select>
+
+	<!-- 게시글 작성 id 조회 -->
+	<select id="boardUserid" parameterClass="boardParameter"
+		resultClass="string">
+		<![CDATA[
+		select board_userid from $boardId$ where board_uid=#buid# and rownum<=1
+		]]>
+	</select>
+
+	<!-- 게시글 조회 -->
+	<select id="boardView1" parameterClass="boardParameter"
+		resultClass="board">
+		<![CDATA[
+		select board_uid,board_name,board_email,board_title,board_regdate,board_modifydate
+				,board_homepage,board_ip,board_hit,board_comment_cnt,nvl(board_cate_uid,0) "board_cate_uid",board_userid,board_is_file
+				,board_is_html,board_is_notice,board_contents 
+			from $boardId$ 
+			where board_uid=#buid# and rownum<=1
+		]]>
+	</select>
+
+	<!-- 게시글&첨부파일 조회 -->
+	<select id="boardView2" parameterClass="boardParameter"
+		resultClass="board">
+		<![CDATA[
+		select board_uid,board_name,board_email,board_title,board_regdate,board_modifydate
+				,board_homepage,board_ip,board_hit,board_comment_cnt,nvl(board_cate_uid,0) "board_cate_uid",board_userid,board_is_file
+				,board_is_html,board_is_notice,board_contents
+				,nvl((select pds_uid from $boardId$_pds where pds_board_uid=#buid#),0) pds_uid 
+			from $boardId$ 
+			where board_uid=#buid# and rownum<=1
+		]]>
+	</select>
+
+	<!-- 첨부파일 조회 -->
+	<select id="getPds" parameterClass="boardParameter" resultClass="pds">
+		<![CDATA[
+		select pds_uid,pds_dir,pds_file_name1,pds_file_name2,pds_file_size,pds_hit
+			from $boardId$_pds 
+			where pds_board_uid=#buid# and rownum<=1
+		]]>
+	</select>
+
+	<!-- 게시글 정보 가져오기 -->
+	<select id="boardReply" parameterClass="boardParameter"
+		resultClass="board">
+		<![CDATA[
+		select board_uid,board_fid,board_step,board_depth,board_name,board_email,board_title,nvl(board_cate_uid,0) board_cate_uid
+			from $boardId$ 
+			where board_uid=#buid#
+		]]>
+	</select>
+
+	<select id="boardNextUid" parameterClass="string" resultClass="int">
+		<![CDATA[
+		select nvl(max(board_uid)+1,1) from $boardId$
+		]]>
+	</select>
+
+	<select id="boardNextFid" parameterClass="string" resultClass="int">
+		<![CDATA[
+		select nvl(max(board_fid)+1,1) from $boardId$
+		]]>
+	</select>
+
+	<insert id="boardInsert" parameterClass="board">
+		<![CDATA[
+		insert into $board_id$(board_uid,board_fid,board_step,board_depth,board_name,board_email,board_passwd,board_title,board_contents,board_regdate,board_modifydate
+			,board_homepage,board_ip,board_hit,board_vote,board_comment_cnt,board_cate_uid,board_userid,board_group_id,board_is_secret,board_is_file,board_is_html,board_is_notice)
+		values(#board_uid#,#board_fid#,#board_step#,#board_depth#,#board_name#,#board_email#,' ',#board_title#,#board_contents#,sysdate,null,#board_homepage#
+			,#board_ip#,0,0,0,#board_cate_uid#,#board_userid#,#board_group_id#,0,0,1,#board_is_notice#)
+		]]>
+	</insert>
+
+	<delete id="boardDelete" parameterClass="boardParameter">
+		<![CDATA[
+		delete from $boardId$ where board_uid=#buid#
+		]]>
+	</delete>
+
+	<insert id="pdsInsert" parameterClass="pds">
+		<![CDATA[
+		insert into $board_id$_pds(pds_uid,pds_board_uid,pds_dir,pds_file_name1,pds_file_name2,pds_file_size,pds_file_info,pds_hit,pds_is_image,pds_is_main,pds_regdate)
+		values((select max(pds_uid)+1 from $board_id$_pds),#pds_board_uid#,#pds_dir#,#pds_file_name1#,#pds_file_name2#,#pds_file_size#,#pds_file_info#,#pds_hit#,#pds_is_image#,#pds_is_main#,sysdate)
+		]]>
+	</insert>
+
+	<!-- 첨부파일 정보 삭제 -->
+	<delete id="pdsDelete" parameterClass="boardParameter">
+		<![CDATA[
+		delete from $boardId$_pds where pds_board_uid=#buid#
+		]]>
+	</delete>
+
+	<insert id="boardUpdate" parameterClass="board">
+		<![CDATA[
+		update $board_id$ set
+			board_name=#board_name#
+			,board_email=#board_email#
+			,board_title=#board_title#
+			,board_contents=#board_contents#
+			,board_modifydate=sysdate
+			,board_ip=#board_ip#
+			,board_cate_uid=#board_cate_uid#
+			,board_userid=#board_userid#
+			where board_uid=#board_uid#
+		]]>
+	</insert>
+
+	<!-- 댓글 리스트 조회 -->
+	<select id="listComment" parameterClass="boardParameter"
+		resultClass="comment">
+		<![CDATA[
+		select comment_uid,comment_contents,comment_userid,comment_name,comment_regdate from $boardId$_comment where comment_board_uid=#buid# order by comment_regdate desc
+		]]>
+	</select>
+
+	<!-- 댓글 입력 -->
+	<insert id="insertComment" parameterClass="comment">
+		<![CDATA[
+		insert into $boardId$_comment (comment_uid,comment_board_uid,comment_contents,comment_userid,comment_name,comment_passwd,comment_regdate,comment_ip)
+			values(
+				(select max(comment_uid)+1 from $boardId$_comment)
+				,#comment_board_uid#
+				,#comment_contents#
+				,#comment_userid#
+				,#comment_name#
+				,' '
+				,sysdate
+				,#comment_ip#)
+		]]>
+	</insert>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment" parameterClass="comment">
+		<![CDATA[
+		delete from $boardId$_comment where comment_uid = #comment_uid#
+		]]>
+	</delete>
+
+	<!-- 뉴스 영역 -->
+	<!-- news 카테고리 주요 뉴스 리스팅 -->
+	<select id="indexNewsHot" resultClass="news">
+		<![CDATA[
+		select * from (
+			select num,name,title,substr(content,1,20) content,svrfile2,ldate,group_flag,hot_flag,news_hit 
+				from jctv_news2 
+				where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' 
+					and eng is null and chi is null and hot_flag='1' and svrfile2 is not null 
+				order by ldate desc,num desc 
+			) where rownum<=5
+		]]>
+	</select>
+
+	<!-- 영어뉴스 페이지 news 카테고리 주요 뉴스 리스팅 -->
+	<select id="indexNewsHotEng" resultClass="news">
+		<![CDATA[
+		select num, name, title, substr(content,1,120) content, nvl(svrfile2,0) svrfile2
+				,substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate from jctv_news2 a, (
+			select * from (
+				select rowid as rid
+					from jctv_news2 
+					where web_view='1' and eng is not null and chi is null and hot_flag='1' and svrfile2 is not null
+						and news_hit is not null and ldate >= to_char(sysdate-7,'YYYYMMDD') 
+					order by ldate desc) where rownum<=5) b
+			where a.rowid=b.rid
+		]]>
+	</select>
+
+	<!-- 중국어뉴스 페이지 news 카테고리 주요 뉴스 리스팅 -->
+	<select id="indexNewsHotChi" resultClass="news">
+		<![CDATA[
+		select num, name, title, substr(content,1,120) content, nvl(svrfile2,0) svrfile2
+				,substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate from jctv_news2 a, (
+			select * from (
+				select rowid as rid
+					from jctv_news2 
+					where web_view='1' and eng is null and chi is not null and hot_flag='1' and svrfile2 is not null
+						and news_hit is not null and ldate >= to_char(sysdate-7,'YYYYMMDD') 
+					order by ldate desc) where rownum<=5) b
+			where a.rowid=b.rid
+		]]>
+	</select>
+
+	<!-- 메인페이지 분야별 뉴스 리스팅 -->
+	<select id="indexNewsGroup" parameterClass="string" resultClass="news">
+		<![CDATA[
+		select num, name, title, substr(content,1,120) content, nvl(svrfile2,0) svrfile2 from ( 
+			select num, name, title, content, svrfile2 
+				from jctv_news2 
+				where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and group_flag in ($groups$) 
+					and eng is null and chi is null 
+				order by ldate desc, num desc 
+			) where rownum<=3
+		]]>
+	</select>
+
+	<!-- 많이 본 뉴스 리스팅 -->
+	<select id="indexNewsTopAll" resultClass="news">
+		<![CDATA[
+		select * from ( 
+			select num, title, group_flag 
+				from jctv_news2 
+				where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' 
+					and eng is null and chi is null and news_hit is not null 
+				order by news_hit desc 
+			) where rownum<=8
+		]]>
+	</select>
+
+	<!-- 분야별 많이 본 뉴스 리스팅 -->
+	<select id="indexNewsTop" parameterClass="string" resultClass="news">
+		<![CDATA[
+		select * from ( 
+			select num, title, group_flag 
+				from jctv_news2 
+				where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and group_flag in ($groups$) 
+					and eng is null and chi is null and news_hit is not null 
+				order by news_hit desc 
+			) where rownum<=8
+		]]>
+	</select>
+
+	<!-- 영어 뉴스 Most Popular 5 -->
+	<select id="indexNewsEng" resultClass="news">
+		<![CDATA[
+		select * from (
+			select num, title, group_flag 
+			from jctv_news2 
+			where web_view='1' and eng is not null and chi is null
+			and news_hit is not null and ldate >= to_char(sysdate-7,'YYYYMMDD') 
+			order by news_hit desc) where rownum<=5
+		]]>
+	</select>
+
+	<!-- 중국어 뉴스 인기 8 -->
+	<select id="indexNewsChi" resultClass="news">
+		<![CDATA[
+		select * from (
+			select num, title, group_flag 
+			from jctv_news2 
+			where web_view='1' and eng is null and chi is not null
+			and news_hit is not null and ldate >= to_char(sysdate-7,'YYYYMMDD') 
+			order by news_hit desc) where rownum<=8
+		]]>
+	</select>
+
+	<!-- 날씨영상 얻기 -->
+	<select id="getWeatherFlv" resultClass="news">
+		<![CDATA[
+		select num,name,title,nvl(svrfile2,0) svrfile2,flv,ldate from (
+			select num,name,title,svrfile2 svrfile2,flv,ldate 
+				from jctv_news2 
+				where ldate >= to_char(sysdate-1,'YYYYMMDD') and web_view='1' and group_flag='3' 
+					and flv is not null 
+				order by ldate desc,flv desc
+			) where rownum<=1
+		]]>
+	</select>
+
+	<select id="indexInvite" resultClass="vod">
+		<![CDATA[
+		select * from (
+			select num, subcd, title, urlfile, vodcode, photo_url 
+				from vodlist 
+				where subcd='0501' and web_view='1' 
+				order by firstdt desc
+			) where rownum<=2
+		]]>
+	</select>
+
+	<!-- 영어 뉴스 페이지 English NEWS VOD 리스팅 -->
+	<select id="indexVodEng" parameterClass="int" resultClass="vod">
+		<![CDATA[
+		select num, subcd, title, urlfile, vodcode, photo_url,substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt
+		from (select num, subcd, title, urlfile, vodcode, photo_url,firstdt from vodlist where subcd='238' and web_view='1' and flv='1' order by firstdt desc) where rownum<=#cnt#
+		]]>
+	</select>
+
+	<!-- 중국어 뉴스 페이지 중문신문 VOD 리스팅 -->
+	<select id="indexVodChi" resultClass="vod">
+		<![CDATA[
+		select num, subcd, title, urlfile, vodcode, photo_url,substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt
+		from (select num, subcd, title, urlfile, vodcode, photo_url,firstdt from vodlist where subcd='312' and web_view='1' and flv='1' order by firstdt desc) where rownum<=3
+		]]>
+	</select>
+
+	<!-- 뉴스 검색 -->
+	<select id="listNews" parameterClass="newsParameter"
+		resultClass="news">
+		<![CDATA[
+		select num, name, title, nvl(svrfile2,0) svrfile2, substr(content,1,#lengthContent#) content
+				, substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate, group_flag 
+			from (select a.*,rownum linenum from (
+				select num, name, title, svrfile2, ldate, group_flag, content
+					from jctv_news2 
+					where web_view='1' $andWhere$
+					order by ldate desc) a
+				where rownum<=#rowEnd#)
+			where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<!-- where 조건에 맞는 뉴스 리스트 숫자 카운트 -->
+	<select id="newsCnt" parameterClass="newsParameter" resultClass="int">
+		<![CDATA[
+		select count(*) from jctv_news2 where web_view='1' $andWhere$
+		]]>
+	</select>
+
+	<select id="viewNews" parameterClass="int" resultClass="news">
+		<![CDATA[
+		select num,name,title,flv,nvl(svrfile2,0) svrfile2,group_flag,substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate,news_goal,content_clob
+		from jctv_news2 where num=#nuid#
+		]]>
+	</select>
+
+	<select id="getVodInfo" parameterClass="int" resultClass="vod">
+		<![CDATA[
+		select num, title, maincd, subcd, character, content, urlfile, photo_url
+			,substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt 
+			from vodlist where num=#num#
+		]]>
+	</select>
+
+	<!-- 날씨 영상 리스트 -->
+	<select id="isListWeather" parameterClass="int" resultClass="string">
+		<![CDATA[
+		select nvl(flv,0) flv from jctv_news2 where num=#nuid#
+		]]>
+	</select>
+
+	<select id="listWeather" resultClass="news">
+		<![CDATA[
+		select num, title, '/upload/news/'||svrfile2 svrfile2
+				, substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate from (
+			select num, name, title, svrfile2, ldate
+				from jctv_news2 
+				where ldate >= to_char(sysdate-7,'YYYYMMDD') and web_view='1' and group_flag='3'
+					 and name='김민정' and length(svrfile2)>1 and svrfile2 is not null
+					 and flv is not null and length(flv)>1 
+					 and eng is null and chi is null
+				order by ldate desc, flv desc) a
+			where rownum<=3
+		]]>
+	</select>
+	<!-- 검색 영역 -->
+	<select id="searchTextSelect" parameterClass="searchValue"
+		resultClass="int">
+		<![CDATA[
+		select count(*) from search_text where text_real=#text_real#
+		]]>
+	</select>
+	<insert id="searchTextInsert" parameterClass="searchValue">
+		<![CDATA[
+		insert into search_text(text_uid,text_real,text_view,text_cnt,regdate,text_use,referer,ip)
+		values((select nvl(max(text_uid),0)+1 from search_text),#text_real#,#text_view#,1,sysdate,'1',#referer#,#ip#)
+		]]>
+	</insert>
+	<update id="searchTextUpdate" parameterClass="searchValue">
+		<![CDATA[
+		update search_text set text_cnt=text_cnt+1 where text_real=#text_real#
+		]]>
+	</update>
+
+	<select id="searchListProgram" parameterClass="searchParameter"
+		resultClass="vod">
+		<![CDATA[
+		select * from (
+			select rownum as linenum,num, maincd, subcd, vodcode, vodname, urlfile, title, photo_url, view_cnt, code_name, code_number
+					, substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt
+				from (
+				select num, maincd, subcd, vodcode, vodname, urlfile, title, firstdt, photo_url, view_cnt, code_name, code_number
+					from cd_list join vodlist on code_number = trim(subcd)
+					where web_view='1' and code_name like '%'||#schText#||'%' order by firstdt desc) a
+				where rownum<=#rowEnd#)
+			where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<select id="searchCntProgram" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) from cd_list join vodlist on code_number = trim(subcd)
+		where web_view='1' and code_name like '%'||#schText#||'%'
+		]]>
+	</select>
+
+	<select id="searchExisProgram" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from cd_list join vodlist on code_number = trim(subcd)
+			where web_view='1' and code_name like '%'||#schText#||'%' and rownum<=1
+		]]>
+	</select>
+
+	<select id="searchListNews" parameterClass="searchParameter"
+		resultClass="news">
+		<![CDATA[
+		select * from (
+			select rownum as linenum,group_flag, title, num, substr(content,1,174) content, name, svrfile2
+					, substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate
+				from (
+					select group_flag, title, num, substr(content,1,174) content, name, ldate, svrfile2
+						from jctv_news2 where web_view='1' and group_flag in ('1','2','3','4','5','6','7','8')
+							and (title like '%'||#schText#||'%' or content_clob like '%'||#schText#||'%')
+						order by ldate desc
+				) where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<select id="searchCntNews" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from jctv_news2 
+		where web_view='1' and group_flag in ('1','2','3','4','5','6','7','8') 
+			and (title like '%'||#schText#||'%' or content_clob like '%'||#schText#||'%')
+		]]>
+	</select>
+
+	<select id="searchListNews2" parameterClass="searchParameter"
+		resultClass="news">
+		<![CDATA[
+		select * from (
+			select rownum as linenum,group_flag, title, num, substr(content,1,174) content, name, svrfile2
+					, substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate
+				from (
+					select group_flag, title, num, substr(content,1,174) content, name, ldate, svrfile2
+						from jctv_news2 where ldate > #nSearchDate# and web_view='1' and group_flag in ('1','2','3','4','5','6','7','8')
+							and (title like '%'||#schText#||'%' or content_clob like '%'||#schText#||'%')
+						order by ldate desc
+				) where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<select id="searchCntNews2" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from jctv_news2 
+		where ldate > #nSearchDate# and web_view='1' and group_flag in ('1','2','3','4','5','6','7','8') 
+			and (title like '%'||#schText#||'%' or content_clob like '%'||#schText#||'%')
+		]]>
+	</select>
+
+	<select id="searchExisNews" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from jctv_news2
+		where web_view='1' 
+			and group_flag in ('1','2','3','4','5','6','7','8') 
+			and (title like '%'||#schText#||'%' or content_clob like '%'||#schText#||'%')
+			and rownum<=1
+		]]>
+	</select>
+
+	<select id="searchListVod" parameterClass="searchParameter"
+		resultClass="vod">
+		<![CDATA[
+		select * from (
+			select rownum as linenum, num, maincd, subcd, vodcode, vodname, urlfile, title, photo_url, view_cnt, code_name, code_number
+					, substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt 
+				from (
+				select num, maincd, subcd, vodcode, vodname, urlfile, title, firstdt, photo_url, view_cnt, code_name, code_number
+					from cd_list join vodlist on code_number = trim(subcd)
+					where web_view='1' and vodname like '%'||#schText#||'%' and rownum<=#rowEnd# order by firstdt desc) a
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<select id="searchCntVod" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from cd_list join vodlist on code_number = trim(subcd) 
+			where web_view='1' and vodname like '%'||#schText#||'%'
+		]]>
+	</select>
+
+	<select id="searchExisVod" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from cd_list join vodlist on code_number = trim(subcd) 
+			where web_view='1' and vodname like '%'||#schText#||'%' and rownum<=1
+		]]>
+	</select>
+	<!-- 채용정보 -->
+	<select id="searchListBoard1" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,180)) board_contents
+					from bd_jobinfo where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 공지사항 -->
+	<select id="searchListBoard2" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,180)) board_contents
+					from bd_notice where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 프로그램 -->
+	<select id="searchListBoard3" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.*,
+					(select cmme_direct_uid from cm_menu where cmme_uid=(select cmme_parent from cm_menu where cmme_uid=a.board_group_id)) board_cate_uid,
+					(select cmme_name from cm_menu where cmme_uid=(select cmme_parent from cm_menu where cmme_uid=a.board_group_id)) cate_name 
+				from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,board_group_id
+						,to_char(substr(board_contents,1,172)) board_contents,m2.cmme_name || '/' || m1.cmme_name menu_name
+					from pg_board left join cm_menu m1 on board_group_id=m1.cmme_uid join cm_menu m2 on m1.cmme_parent=m2.cmme_uid
+					where m1.cmme_is_view=1 and m2.cmme_is_view=1 and board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate#  
+						and rownum<=#rowEnd# order by board_regdate desc
+				) a
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 시청자의견 -->
+	<select id="searchListBoard4" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,172)) board_contents,cate_name
+					from bd_opinion join bd_opinion_category on board_cate_uid=cate_uid where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 고객의소리 -->
+	<select id="searchListBoard5" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,172)) board_contents,cate_name
+					from bd_cableqa join bd_cableqa_category on board_cate_uid=cate_uid where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 자주묻는질문 -->
+	<select id="searchListBoard6" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,180)) board_contents,cate_name
+					from bd_cablefq join bd_cablefq_category on board_cate_uid=cate_uid where board_title like '%'||#schText#||'%' order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 채용정보 -->
+	<select id="searchCntBoard1" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_jobinfo where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate#
+		]]>
+	</select>
+	<!-- 공지사항 -->
+	<select id="searchCntBoard2" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_notice where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate#
+		]]>
+	</select>
+	<!-- 프로그램 -->
+	<select id="searchCntBoard3" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from pg_board join cm_menu m1 on board_group_id=m1.cmme_uid join cm_menu m2 on m1.cmme_parent=m2.cmme_uid
+			where m1.cmme_is_view=1 and m2.cmme_is_view=1 and board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate#
+		]]>
+	</select>
+	<!-- 시청자의견 -->
+	<select id="searchCntBoard4" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_opinion where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate#
+		]]>
+	</select>
+	<!-- 고객의소리 -->
+	<select id="searchCntBoard5" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_jobinfo where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate#
+		]]>
+	</select>
+	<!-- 자주묻는질문 -->
+	<select id="searchCntBoard6" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_cablefq where board_title like '%'||#schText#||'%' 
+		]]>
+	</select>
+
+	<select id="searchExisBoard1" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_jobinfo where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard2" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_notice where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# and  rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard3" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from pg_board join cm_menu m1 on board_group_id=m1.cmme_uid join cm_menu m2 on m1.cmme_parent=m2.cmme_uid
+			where m1.cmme_is_view=1 and m2.cmme_is_view=1 and board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard4" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_opinion where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard5" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_cableqa where board_title like '%'||#schText#||'%' and board_regdate > #nSearchDate# and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard6" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_cablefq where board_title like '%'||#schText#||'%' and rownum<=1
+		]]>
+	</select>
+<!-- 원본 검색 sql 
+	<select id="searchListBoard1" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,180)) board_contents
+					from bd_jobinfo where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%' order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<select id="searchListBoard2" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,180)) board_contents
+					from bd_notice where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%' order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<select id="searchListBoard3" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.*,
+					(select cmme_direct_uid from cm_menu where cmme_uid=(select cmme_parent from cm_menu where cmme_uid=a.board_group_id)) board_cate_uid,
+					(select cmme_name from cm_menu where cmme_uid=(select cmme_parent from cm_menu where cmme_uid=a.board_group_id)) cate_name 
+				from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,board_group_id
+						,to_char(substr(board_contents,1,172)) board_contents,m2.cmme_name || '/' || m1.cmme_name menu_name
+					from pg_board left join cm_menu m1 on board_group_id=m1.cmme_uid join cm_menu m2 on m1.cmme_parent=m2.cmme_uid
+					where m1.cmme_is_view=1 and m2.cmme_is_view=1 and (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%') 
+						and rownum<=#rowEnd# order by board_regdate desc
+				) a
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<select id="searchListBoard4" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,172)) board_contents,cate_name
+					from bd_opinion join bd_opinion_category on board_cate_uid=cate_uid where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%' order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<select id="searchListBoard5" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,172)) board_contents,cate_name
+					from bd_cableqa join bd_cableqa_category on board_cate_uid=cate_uid where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%' order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<select id="searchListBoard6" parameterClass="searchParameter"
+		resultClass="board">
+		<![CDATA[
+		select * from (
+			select rownum linenum,a.* from (
+				select board_fid,board_uid,board_name,board_title,board_regdate,board_is_html,to_char(substr(board_contents,1,180)) board_contents,cate_name
+					from bd_cablefq join bd_cablefq_category on board_cate_uid=cate_uid where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%' order by board_regdate desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	<select id="searchCntBoard1" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_jobinfo where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%'
+		]]>
+	</select>
+	<select id="searchCntBoard2" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_notice where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%'
+		]]>
+	</select>
+	<select id="searchCntBoard3" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from pg_board join cm_menu m1 on board_group_id=m1.cmme_uid join cm_menu m2 on m1.cmme_parent=m2.cmme_uid
+			where m1.cmme_is_view=1 and m2.cmme_is_view=1 and (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%')
+		]]>
+	</select>
+	<select id="searchCntBoard4" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_opinion where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%'
+		]]>
+	</select>
+	<select id="searchCntBoard5" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_jobinfo where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%'
+		]]>
+	</select>
+	<select id="searchCntBoard6" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select count(*) cnt from bd_cablefq where board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%'
+		]]>
+	</select>
+
+	<select id="searchExisBoard1" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_jobinfo where (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%') and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard2" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_notice where (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%') and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard3" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from pg_board join cm_menu m1 on board_group_id=m1.cmme_uid join cm_menu m2 on m1.cmme_parent=m2.cmme_uid
+			where m1.cmme_is_view=1 and m2.cmme_is_view=1 and (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%') and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard4" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_opinion where (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%') and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard5" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_cableqa where (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%') and rownum<=1
+		]]>
+	</select>
+	<select id="searchExisBoard6" parameterClass="searchParameter"
+		resultClass="int">
+		<![CDATA[
+		select 1 from bd_cablefq where (board_title like '%'||#schText#||'%' or board_contents like '%'||#schText#||'%') and rownum<=1
+		]]>
+	</select> -->
+	<!-- 팝업 데이터 검색 -->
+	<select id="getPopup" parameterClass="int" resultClass="popup">
+		<![CDATA[
+		select pu_uid,pu_title,pu_contents,pu_width,pu_height,pu_is_skin,pu_is_html from et_popup where pu_uid=#num#
+		]]>
+	</select>
+
+	<!-- DB에 등록된 유효한 팝업 검색 -->
+	<select id="indexListPopup" resultClass="popup">
+		<![CDATA[
+		select pu_uid,pu_title,pu_contents,pu_width,pu_height,pu_is_skin,pu_is_html from et_popup
+			where pu_start<=sysdate and sysdate<=pu_end and pu_is_active=1 order by pu_uid desc
+		]]>
+	</select>
+
+	<!-- VOD 소식지 조회 -->
+	<select id="listVodWeek" resultClass="vodWeek">
+		<![CDATA[
+		select * from et_vodweek order by ldate desc
+		]]>
+	</select>
+
+	<select id="listSmsRequest" parameterClass="smsParameter"
+		resultClass="sms">
+		<![CDATA[
+		select WEBSVRSRNO,WEBSVRNAME,WEBSVRHTRG,WEBSVRHTEL,WEBSVRMTRG,WEBSVRMTEL,WEBSVRPOST,WEBSVRADDR,WEBSVRMJCD,WEBSVRSVCD,WEBSVRRQDT,WEBSVRPRGB,WEBSVRRCOM from (
+			select rownum linenum,a.* from (
+				select WEBSVRSRNO,WEBSVRNAME,WEBSVRHTRG,WEBSVRHTEL,WEBSVRMTRG,WEBSVRMTEL,WEBSVRPOST,WEBSVRADDR,WEBSVRMJCD,WEBSVRSVCD,WEBSVRRQDT,WEBSVRPRGB,WEBSVRRCOM 
+					from TWEBSVR where WEBSVRUSID=#userid# order by WEBSVROPDT desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+
+	<insert id="insertSmsRequest" parameterClass="sms">
+		<![CDATA[
+		insert into TWEBSVR(WEBSVRMSID,WEBSVRSRNO,WEBSVRUSID,WEBSVRCUST,WEBSVRNAME,WEBSVRHTRG,WEBSVRHTEL,
+							WEBSVRMTRG,WEBSVRMTEL,WEBSVRPOST,WEBSVRADDR,WEBSVRMJCD,WEBSVRSVCD,WEBSVRAPST,
+							WEBSVRAADR,WEBSVRRQDT,WEBSVRFRTM,WEBSVRTOTM,WEBSVRRCOM,WEBSVRPRGB,WEBSVRPRDT,
+							WEBSVRWMAN,WEBSVRSMSR,WEBSVRWCOM,WEBSVRCWHY,WEBSVRLMDT,WEBSVRLMID,WEBSVROPDT,
+							WEBSVROPID,WEBSVRRQBK,WEBSVRACNO,WEBSVRACNM)
+					values(#WEBSVRMSID#,#WEBSVRSRNO#,#WEBSVRUSID#,#WEBSVRCUST#,#WEBSVRNAME#,#WEBSVRHTRG#,#WEBSVRHTEL#,
+							#WEBSVRMTRG#,#WEBSVRMTEL#,#WEBSVRPOST#,#WEBSVRADDR#,#WEBSVRMJCD#,#WEBSVRSVCD#,#WEBSVRAPST#,
+							#WEBSVRAADR#,#WEBSVRRQDT#,#WEBSVRFRTM#,#WEBSVRTOTM#,#WEBSVRRCOM#,#WEBSVRPRGB#,#WEBSVRPRDT#,
+							#WEBSVRWMAN#,#WEBSVRSMSR#,#WEBSVRWCOM#,#WEBSVRCWHY#,sysdate,#WEBSVRLMID#,sysdate,
+							#WEBSVROPID#,#WEBSVRRQBK#,#WEBSVRACNO#,#WEBSVRACNM#)
+		]]>
+	</insert>
+
+	<select id="listInfoXml" parameterClass="string" resultClass="board">
+		<![CDATA[
+		select board_title, board_contents, to_char(board_regdate, 'YYYY-MM-DD HH:MM:DD') board_regdate
+			from (
+				select board_title, board_contents, board_regdate
+					from bd_notice
+					order by board_uid desc
+				)
+			where to_char(board_regdate, 'YYYY-MM-DD') = #date#
+		]]>
+	</select>
+
+	<select id="listNewsXml1" parameterClass="string" resultClass="news">
+		<![CDATA[
+		select num, name, title, content_clob, svrfile2, substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate, group_flag
+			from (
+				select num, name, title, content_clob, svrfile2, ldate, group_flag
+					from jctv_news2
+					where web_view='1' and eng is null and chi is null
+					order by group_flag asc
+				)
+			where substr(ldate,0,8) = #date#
+		]]>
+	</select>
+
+	<select id="listNewsXml2" parameterClass="xmlParameter"
+		resultClass="news">
+		<![CDATA[
+		select num, name, title, content_clob, upfile, substr(ldate,1,4)||'-'||substr(ldate,5,2)||'-'||substr(ldate,7,2) ldate, group_flag
+			from (
+				select num, name, title, content_clob, upfile, ldate, group_flag
+					from jctv_news2
+					where web_view='1' $where$
+					order by ldate desc
+				)
+			where substr(ldate,0,8) = #val1#
+		]]>
+	</select>
+</sqlMap>

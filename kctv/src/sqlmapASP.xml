@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="kctv">
+	<typeAlias alias="countUpdate" type="kctv.web.common.CountUpdate"/>
+	<typeAlias alias="admin" type="kctv.web.admin.Admin"/>
+	<typeAlias alias="adminParameter" type="kctv.web.admin.AdminParameter"/>
+	<typeAlias alias="adminList" type="kctv.web.admin.AdminList"/>
+	<typeAlias alias="adminDetail" type="kctv.web.admin.AdminDetail"/>
+	<typeAlias alias="adminMenu" type="kctv.web.admin.AdminMenu"/>
+	<typeAlias alias="commonUpdate" type="kctv.web.common.CommonUpdate"/>
+	<typeAlias alias="commonDelete" type="kctv.web.common.CommonDelete"/>
+	
+	<typeAlias alias="userParameter" type="kctv.web.admin.UserParameter"/>
+	<typeAlias alias="user" type="kctv.web.user.User"/>
+	
+	<typeAlias alias="code" type="kctv.web.admin.Code"/>
+	
+	<typeAlias alias="menu" type="kctv.web.admin.Menu"/>
+	
+	<typeAlias alias="newsParameter" type="kctv.web.admin.NewsParameter"/>
+	<typeAlias alias="jctvNews1" type="kctv.web.admin.JctvNews1"/>
+	<typeAlias alias="jctvNews2" type="kctv.web.admin.JctvNews2"/>
+	
+	<typeAlias alias="vodParameter" type="kctv.web.vod.VodParameter"/>
+	<typeAlias alias="vodCode" type="kctv.web.vod.VodCode"/>
+	<typeAlias alias="vod" type="kctv.web.vod.Vod"/>
+	<typeAlias alias="vodWeek" type="kctv.web.vod.VodWeek"/>
+	
+	<typeAlias alias="boardConfig" type="kctv.web.board.BoardConfig"/>
+	<typeAlias alias="boardParameter" type="kctv.web.board.BoardParameter"/>
+	<typeAlias alias="board" type="kctv.web.board.Board"/>
+	
+	<typeAlias alias="popupParameter" type="kctv.web.common.PopupParameter"/>
+	<typeAlias alias="popup" type="kctv.web.common.Popup"/>
+	
+	<typeAlias alias="scheduleParameter" type="kctv.web.admin.ScheduleParameter"/>
+	<typeAlias alias="schedule" type="kctv.web.admin.Schedule"/>
+	
+	<typeAlias alias="int" type="java.lang.Integer"/>
+	<typeAlias alias="string" type="java.lang.String"/>
+	
+	<typeAlias alias="lineNews" type="kctv.web.admin.LineNews"/>
+	
+	<update id="cntUpdate" parameterClass="countUpdate">
+		<![CDATA[
+		update $table$ set $field$ = to_number($field$) +1 where $where$
+		]]>
+	</update>
+	
+	<!-- 관리자 정보 리스트 -->
+	<select id="listAdmin" parameterClass="adminParameter" resultClass="adminList">
+		<![CDATA[
+		select * from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select adad_id "id",adad_name "name",adad_level "level",adde_dept "dept",adde_position "position",adde_phone "phone",adde_accessdate "accessdate"
+						from ad_admin join ad_admin_detail on adad_id=adde_adad_id 
+						$where$
+						order by adde_regdate desc) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+	
+	<select id="cntAdmin" parameterClass="adminParameter" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from ad_admin join ad_admin_detail on adad_id=adde_adad_id $where$
+		]]>
+	</select>
+	
+	<!-- 관리자 로그인 정보 확인 -->
+	<select id="getAdminInfo" parameterClass="admin" resultClass="admin">
+		<![CDATA[
+		select adad_id,adad_name,adad_level,adad_auth_menu,adde_email from ad_admin join ad_admin_detail on adad_id=adde_adad_id where adad_id=#adad_id# and adad_passwd=#adad_passwd# and rownum<=1
+		]]>
+	</select>
+	
+	<!-- 관리자 id로 관리자 정보 조회(접근메뉴, 권한 외) -->
+	<select id="getAdmin" parameterClass="string" resultClass="admin">
+		<![CDATA[
+		select adad_id,adad_name,adad_level,adad_auth_menu from ad_admin where adad_id=#adad_id# and rownum<=1
+		]]>
+	</select>
+	
+	<!-- 관리자 세부정보 조회(이메일, 전화 등) -->
+	<select id="getAdminDetail" parameterClass="string" resultClass="adminDetail">
+		<![CDATA[
+		select 
+				adde_adad_id,
+				adde_dept,
+				adde_position,
+				adde_email,
+				adde_phone,
+				adde_o_phone,
+				adde_o_address,
+				adde_regdate,
+				adde_accessdate,
+				adde_hit 
+			from ad_admin_detail where adde_adad_id=#id# and rownum<=1
+		]]>
+	</select>
+	
+	<!-- 관리자 정보 업데이트 -->
+	<update id="updateAdmin" parameterClass="admin">
+		<![CDATA[
+		update ad_admin set adad_name = #adad_name# where adad_id=#adad_id#
+		]]>
+	</update>
+	
+	<!-- 관리자 비밀번호 업데이트 -->
+	<update id="updateAdminPw" parameterClass="admin">
+		<![CDATA[
+		update ad_admin set adad_passwd = #adad_passwd# where adad_id=#adad_id#
+		]]>
+	</update>
+	
+	<!-- 관리자 접근 메뉴 업데이트 -->
+	<update id="updateAdminAuthMenu" parameterClass="admin">
+		<![CDATA[
+		update ad_admin set adad_auth_menu = #adad_auth_menu# where adad_id=#adad_id#
+		]]>
+	</update>
+	
+	<!-- 관리자 정보 업데이트 -->
+	<update id="updateAdminDetail" parameterClass="adminDetail">
+		<![CDATA[
+		update ad_admin_detail set 
+			adde_dept = #adde_dept#,
+			adde_position = #adde_position#, 
+			adde_email = #adde_email#,
+			adde_phone = #adde_phone#,
+			adde_o_phone = #adde_o_phone#,
+			adde_o_address = #adde_o_address#
+		where adde_adad_id=#adde_adad_id#
+		]]>
+	</update>
+	
+	<select id="getAdminMenu" resultClass="adminMenu">
+		<![CDATA[
+		select adme_fid, adme_name, adme_depth, adme_code, adme_url, adme_target, adme_auth
+			from ad_menu
+			where adme_depth < 2 $andWhere$
+			order by adme_fid, adme_code
+		]]>
+	</select>
+	
+	<!-- 업데이트 -->
+	<update id="updateCommon" parameterClass="commonUpdate">
+		<![CDATA[
+		update $table$ set $field$=#value# where $where$
+		]]>
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteCommon" parameterClass="commonDelete">
+		<![CDATA[
+		delete from $table$ where $where$
+		]]>
+	</delete>
+	
+	<!-- s:회원 관리 -->
+	<!-- 회원 리스트 조회 -->
+	<select id="listUser" parameterClass="userParameter" resultClass="user">
+		<![CDATA[
+		select linenum,mmus_id "id", mmus_name "name", mmus_level "level",mmus_cellphone "cellphone", mmus_address1 "address1", to_char(mmus_accessdate,'YY-MM-DD') "accessdate", mmus_hit "hit" from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select mmus_id, mmus_name, mmus_level,mmus_cellphone, mmus_address1, mmus_accessdate, mmus_hit
+						from mm_user 
+						$where$
+						order by mmus_regdate desc) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+	
+	<!-- 회원 정보 조회 -->
+	<select id="getUser" parameterClass="string" resultClass="user">
+		<![CDATA[
+		select 
+				mmus_id "id",
+				mmus_name "name",
+				mmus_jumin "jumin",
+				mmus_zipcode "zipcode",
+				mmus_address1 "address1",
+				mmus_address2 "address2",
+				mmus_phone "phone",
+				mmus_cellphone "cellphone",
+				mmus_email "email",
+				mmus_regdate "regdate",
+				mmus_accessdate "accessdate",
+				mmus_mailing "mailing",
+				mmus_hit "hit",
+				mmus_level "level",
+				mmus_status "status",
+				mmus_intro "intro",
+				mmus_group "group"
+			from mm_user 
+			where mmus_id=#id#
+		]]>
+	</select>
+	
+	<!-- 회원 정보 업데이트 -->
+	<update id="updateUserBasic" parameterClass="user">
+		<![CDATA[
+		update mm_user set
+				mmus_name=#name#,
+				mmus_zipcode=#zipcode#,
+				mmus_address1=#address1#,
+				mmus_address2=#address2#,
+				mmus_phone=#phone#,
+				mmus_cellphone=#cellphone#,
+				mmus_email=#email#,
+				mmus_mailing=#mailing#,
+				mmus_hit=#hit#,
+				mmus_level=#level#,
+				mmus_status=#status#,
+				mmus_intro=#intro#,
+				mmus_group=#group#
+			where mmus_id=#id#
+		]]>
+	</update>
+	
+	<!-- 회원 비밀번호 업데이트 -->
+	<update id="updateUserPasswd" parameterClass="user">
+		<![CDATA[
+		update mm_user set mmus_passwd=P_CRYTO.ENC_MD5(#passwd#) where mmus_id=#id#
+		]]>
+	</update>
+	
+	<!-- 회원 숫자 조회 -->
+	<select id="cntUser" parameterClass="userParameter" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from mm_user $where$
+		]]>
+	</select>
+	
+	<!-- 탈퇴 회원 조회 -->
+	<select id="listSecede" parameterClass="userParameter" resultClass="user">
+		<![CDATA[
+		select linenum,mmse_mmus_id "id", mmse_comment "intro", mmse_date "regdate" from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select mmse_mmus_id, mmse_comment, mmse_date
+						from mm_secede 
+						$where$
+						order by mmse_date desc) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+	
+	<!-- 탈퇴 회원 카운트 -->
+	<select id="cntSecede" parameterClass="userParameter" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from mm_secede $where$
+		]]>
+	</select>
+	<!-- e:회원 관리 -->
+	
+	<!-- s:코드 관리 -->
+	<!-- 코드 리스트 조회 -->
+	<select id="listCode" resultClass="code">
+		<![CDATA[
+		select code_uid,code_name,code_depth,code_parent,code_d1,code_d2,code_is_view,code_number from cd_list where code_depth in (1,2) order by code_d1,code_d2
+		]]>
+	</select>
+	
+	<!-- 하부 코드 조회 -->
+	<select id="getCodeD1" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(code_d1),0)+1 d from cd_list where code_depth=1 and code_parent = #code_uid#
+		]]>
+	</select>
+	<select id="getCodeD2" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(code_d2),0)+1 d from cd_list where code_depth=2 and code_parent = #code_uid#
+		]]>
+	</select>
+	<select id="getCodeD3" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(code_d3),0)+1 d from cd_list where code_depth=3 and code_parent = #code_uid#
+		]]>
+	</select>
+	<select id="getCodeD4" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(code_d4),0)+1 d from cd_list where code_depth=4 and code_parent = #code_uid#
+		]]>
+	</select>
+	<select id="getCodeD5" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(code_d5),0)+1 d from cd_list where code_depth=5 and code_parent = #code_uid#
+		]]>
+	</select>
+	
+	<!-- 코드 조회 -->
+	<select id="getCode" parameterClass="int" resultClass="code">
+		<![CDATA[
+		select code_uid,code_name,code_depth,code_parent,code_d1,code_d2,code_is_view,code_number from cd_list where code_uid = #code_uid#
+		]]>
+	</select>
+	
+	<!-- 코드 등록 -->
+	<insert id="insertCode" parameterClass="code">
+		<![CDATA[
+		insert into cd_list(code_uid,code_name,code_depth,code_parent,code_d1,code_d2,code_d3,code_d4,code_d5,code_regdate,code_is_view,code_number)
+			values((select nvl(max(code_uid),0)+1 from cd_list),#code_name#,#code_depth#,#code_parent#,#code_d1#,#code_d2#,#code_d3#,#code_d4#,#code_d5#,sysdate,#code_is_view#,#code_number#)
+		]]>
+	</insert>
+	<!-- e:코드 관리 -->
+	
+	<!-- s:메뉴/컨텐츠 관리 -->
+	<!-- 메뉴 리스트 조회 -->
+	<select id="listMenuD0" resultClass="menu">
+		<![CDATA[
+		select * from cm_menu where cmme_depth = 1 order by cmme_d1,cmme_d2,cmme_d3,cmme_d4
+		]]>
+	</select>
+	
+	<select id="listMenuD1" parameterClass="int" resultClass="menu">
+		<![CDATA[
+		select * from (
+			select * from cm_menu where cmme_parent=(select cmme_parent from cm_menu where cmme_uid=#cmme_uid#) and cmme_depth=1
+			union 
+			select * from cm_menu where cmme_parent=#cmme_uid# and cmme_depth=2
+			) order by cmme_d1,cmme_d2,cmme_d3,cmme_d4
+		]]>
+	</select>
+	
+	<select id="listMenuD2" parameterClass="int" resultClass="menu">
+		<![CDATA[
+		select * from (
+			select * from cm_menu where cmme_depth = 1
+			union
+			select * from cm_menu where cmme_parent=(select cmme_parent from cm_menu where cmme_uid=#cmme_uid#) and cmme_depth=2
+			union 
+			select * from cm_menu where cmme_parent=#cmme_uid# and cmme_depth=3
+			) order by cmme_d1,cmme_d2,cmme_d3,cmme_d4
+		]]>
+	</select>
+	
+	<select id="listMenuD3" parameterClass="int" resultClass="menu">
+		<![CDATA[
+		select * from (
+			select * from cm_menu where cmme_depth = 1
+			union
+			select * from cm_menu where cmme_parent=(select cmme_parent from cm_menu where cmme_uid=(select cmme_parent from cm_menu where cmme_uid=#cmme_uid#)) and cmme_depth=2
+			union
+			select * from cm_menu where cmme_parent=(select cmme_parent from cm_menu where cmme_uid=#cmme_uid#) and cmme_depth=3
+			union 
+			select * from cm_menu where cmme_parent=#cmme_uid# and cmme_depth=4
+			) order by cmme_d1,cmme_d2,cmme_d3,cmme_d4
+		]]>
+	</select>
+	
+	<!-- 하위 메뉴 조회 -->
+	<select id="getMenuD1" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(cmme_d1),0)+1 d from cm_menu where cmme_depth=1 and cmme_parent = #cmme_uid#
+		]]>
+	</select>
+	<select id="getMenuD2" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(cmme_d2),0)+1 d from cm_menu where cmme_depth=2 and cmme_parent = #cmme_uid#
+		]]>
+	</select>
+	<select id="getMenuD3" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(cmme_d3),0)+1 d from cm_menu where cmme_depth=3 and cmme_parent = #cmme_uid#
+		]]>
+	</select>
+	<select id="getMenuD4" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(cmme_d4),0)+1 d from cm_menu where cmme_depth=4 and cmme_parent = #cmme_uid#
+		]]>
+	</select>
+	<select id="getMenuD5" parameterClass="int" resultClass="int">
+		<![CDATA[
+		select nvl(max(cmme_d5),0)+1 d from cm_menu where cmme_depth=5 and cmme_parent = #cmme_uid#
+		]]>
+	</select>
+	
+	<!-- 메뉴 명 조회 -->
+	<select id="getMenu" parameterClass="int" resultClass="menu">
+		<![CDATA[
+		select cmme_uid,cmme_name,cmme_depth,cmme_parent,cmme_d1,cmme_d2,cmme_is_view from cm_menu where cmme_uid = #cmme_uid#
+		]]>
+	</select>
+	
+	<!-- 메뉴 추가 -->
+	<insert id="insertMenu" parameterClass="menu">
+		<![CDATA[
+		insert into cm_menu(cmme_uid,cmme_name,cmme_depth,cmme_parent,cmme_d1,cmme_d2,cmme_d3,cmme_d4,cmme_d5,cmme_link,cmme_link_target,cmme_is_view,cmme_direct_uid)
+			values((select nvl(max(cmme_uid),0)+1 from cm_menu),#cmme_name#,#cmme_depth#,#cmme_parent#,#cmme_d1#,#cmme_d2#,#cmme_d3#,#cmme_d4#,#cmme_d5#,#cmme_link#,#cmme_link_target#,#cmme_is_view#,#cmme_direct_uid#)
+		]]>
+	</insert>
+	<!-- e:메뉴/컨텐츠 관리 -->
+	
+	<!-- s:뉴스 관리 -->
+	<!-- 기사작성 1차 수정 정보 조회 -->
+	<select id="getJctvNews1" parameterClass="int" resultClass="jctvNews1">
+		<![CDATA[
+		select num,name,title,svrfile2,maincd,group_flag,news_goal,vcr,sound,content from jctv_news1 where num=#num#
+		]]>
+	</select>
+	
+	<!-- 기사작성 2차 수정 정보 조회 -->
+	<select id="getJctvNews2" parameterClass="int" resultClass="jctvNews2">
+		<![CDATA[
+		select num,userid,name,title,upfile,svrfile,svrfile2,ldate,run_time,news_goal,vcr,sound,web_view,group_flag,hot_flag,flv,eng,news_hit,vod,chi,content_clob from jctv_news2 where num=#num#
+		]]>
+	</select>
+	
+	<!-- 1차 기사 이미지 파일 조회 -->
+	<select id="getJctvNews1Img" parameterClass="int" resultClass="String">
+		<![CDATA[
+		select svrfile2 from jctv_news1 where num=#num#
+		]]>
+	</select>
+	
+	<!-- 2차 기사 이미지 파일 조회 -->
+	<select id="getJctvNews2Img" parameterClass="int" resultClass="String">
+		<![CDATA[
+		select svrfile2 from jctv_news2 where num=#num#
+		]]>
+	</select>
+	
+	<!-- 다음 인서트 넘버 얻기? -->
+	<select id="getNextNumJctvNews1" resultClass="int">
+		<![CDATA[
+		select nvl(max(num)+1,1) num from jctv_news1
+		]]>
+	</select>
+	
+	<select id="getNextNumJctvNews2" resultClass="int">
+		<![CDATA[
+		select nvl(max(num)+1,1) num from jctv_news2
+		]]>
+	</select>
+	
+	<select id="getCntJctvNews1" parameterClass="jctvNews1" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from jctv_news1 where title=#title# and ldate=#ldate#
+		]]>
+	</select>
+	
+	<select id="getCntJctvNews2" parameterClass="jctvNews2" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from jctv_news2 where title=#title# and ldate=#ldate#
+		]]>
+	</select>
+	
+	<!-- 1차 기사작성 기사 입력 -->
+	<insert id="insertJctvNews1" parameterClass="jctvNews1">
+		<![CDATA[
+		insert into jctv_news1 (num,userid,name,title,content,sendtime,receivetime,svrfile,svrfile2,maincd,ldate,group_flag,news_goal,vcr,sound)
+			values(#num#,#userid#,#name#,#title#,#content#,#sendtime#,#receivetime#,#svrfile#,#svrfile2#,#maincd#,#ldate#,#group_flag#,#news_goal#,#vcr#,#sound#)
+		]]>
+	</insert>
+	
+	<!-- 1차 기사 작성 업데이트 -->
+	<update id="updateJctvNews1" parameterClass="jctvNews1">
+		<![CDATA[
+		update jctv_news1 set 
+				title=#title#,
+				svrfile2=#svrfile2#,
+				maincd=#maincd#,
+				group_flag=#group_flag#,
+				news_goal=#news_goal#,
+				vcr=#vcr#,
+				sound=#sound#,
+				content=#content:clob#
+			where num=#num#
+		]]>
+	</update>
+	
+	<!-- 1차 기사작성 이미지 업데이트 -->
+	<update id="updateJctvNews1Img" parameterClass="int">
+		<![CDATA[
+		update jctv_news1 set svrfile2 = null where num = #num#
+		]]>
+	</update>
+	
+	<insert id="deleteJctvNews1" parameterClass="int">
+		<![CDATA[
+		delete from jctv_news1 where num=#num#
+		]]>
+	</insert>
+	
+	<!-- 1차 기사 조회 -->
+	<select id="listJctvNews1" parameterClass="string" resultClass="jctvNews1">
+		<![CDATA[
+		select num,userid,name,title,sendtime,receivetime,svrfile2,maincd,ldate,nvl(group_flag,'0') group_flag,vcr,sound,news_goal,content 
+			from jctv_news1 $where$ order by sendtime desc, receivetime desc
+		]]>
+	</select>
+	
+	<!-- 2차 기사 입력 -->
+	<insert id="insertJctvNews2" parameterClass="jctvNews2">
+		<![CDATA[
+		insert into jctv_news2(num, userid, name, title, content, sendtime, receivetime, svrfile, upfile2, svrfile2, ldate, run_time, news_goal, vcr, sound, group_flag, eng, news_hit, chi, content_clob)
+			values(#num#, #userid#, #name#, #title#, #content#, #sendtime#, #receivetime#, #svrfile#, #upfile2#, #svrfile2#, #ldate#, #run_time#, #news_goal#, #vcr#, #sound#, #group_flag#, #eng#, #news_hit#, #chi#, #content_clob#)
+		]]>
+	</insert>
+	
+	<!-- 2차 기사 업데이트 -->
+	<update id="updateJctvNews2" parameterClass="jctvNews2">
+		<![CDATA[
+		update jctv_news2 set
+			name = #name#
+			,title = #title#
+			,content = #content#
+			,flv = #flv#
+			,svrfile2 = #svrfile2#
+			,news_goal = #news_goal#
+			,vcr = #vcr#
+			,sound = #sound#
+			,web_view = #web_view#
+			,group_flag = #group_flag#
+			,eng = #eng#
+			,chi = #chi#
+			,content_clob = #content_clob#
+			where num = #num#
+		]]>
+	</update>
+	
+	<update id="updateJctvNews2Img" parameterClass="int">
+		<![CDATA[
+		update jctv_news2 set svrfile2 = null where num = #num#
+		]]>
+	</update>
+	
+	<!-- 2차 기사작성 리스트 조회 -->
+	<select id="listJctvNews2" parameterClass="newsParameter" resultClass="jctvNews2">
+		<![CDATA[
+		select num,userid,name,title,sendtime,nvl(modify2,0) modify2,nvl(web_view,0) web_view,nvl(group_flag,0) group_flag,nvl(hot_flag,0) hot_flag,flv,nvl(eng,0) eng,nvl(chi,0) chi
+			from (select a.*,rownum linenum from (
+				select num,userid,name,title,sendtime,modify2,web_view,group_flag,hot_flag,flv,eng,chi
+					from jctv_news2 
+					$andWhere$
+					order by ldate desc,num desc) a
+				where rownum<=#rowEnd#)
+			where linenum>=#rowBegin#
+		]]>
+	</select>
+	
+	<!-- 2차 기사작성 리스트 카운트 -->
+	<select id="cntJctvNews2" parameterClass="newsParameter" resultClass="int">
+		<![CDATA[
+		select count(*) from jctv_news2 $andWhere$
+		]]>
+	</select>
+	<!-- listReport 변경
+	order by 절 board_is_notice 에서 오류 생성으로 인하여
+	sub 쿼리 중 select 문에 board_is_notice 포함
+	
+	2013.12.17 by kang
+	 -->
+	 <!-- 뉴스 제보 리스트 -->
+	<select id="listReport" parameterClass="boardParameter" resultClass="board">
+		<![CDATA[
+		select board_uid,board_fid,board_step,board_depth,board_title,board_name,to_char(board_regdate,'YYYY-MM-DD') board_regdate,board_hit,board_comment_cnt,nvl(board_cate_uid,0) board_cate_uid $listField1$ from (
+			select rownum as linenum,a.* $listField2$ from (
+				select * from (
+					select board_uid,board_fid,board_step,board_depth,board_title,board_name,board_regdate,board_hit,board_comment_cnt,board_cate_uid,board_is_notice 
+						from $boardId$ $listWhere$
+						order by board_fid desc,board_step asc) where rownum<=#rowEnd#
+				) a $listJoin$
+			) $fileJoin$ where linenum>=#rowBegin# $fileOrder$
+		]]>
+	</select>
+	
+	<!-- 뉴스 제보 하나 상세조회 -->
+	<select id="getReport" parameterClass="int" resultClass="board">
+		<![CDATA[
+		select board_title,board_name,board_email,board_homepage,board_ip,to_char(board_regdate,'YYYY-MM-DD') board_regdate,nvl(board_cate_uid,0) board_cate_uid
+				,pds_dir||'/'||pds_file_name1 pds_file_name2,board_contents
+			from bd_idea left join bd_idea_pds on board_uid=pds_board_uid where board_uid=#uid#
+		]]>
+	</select>
+	
+	<!-- 뉴스 제보 카운트 -->
+	<select id="cntReport" parameterClass="boardParameter" resultClass="int">
+		<![CDATA[
+		select count(*) "cnt" from $boardId$ $listWhere$
+		]]>
+	</select>
+	
+	<select id="getJctvNewsImage" parameterClass="commonDelete" resultClass="string">
+		<![CDATA[
+		select svrfile2 from $table$ where $where$
+		]]>
+	</select>
+	<!-- e:뉴스 관리 -->
+	
+	<!-- s:VOD 관리 -->
+	<select id="getNextNumVod" resultClass="int">
+		<![CDATA[
+		select max(num)+1 num from vodlist
+		]]>
+	</select>
+	
+	<!-- VOD 메인코드 조회 -->
+	<select id="getMainCd" resultClass="vodCode">
+		<![CDATA[
+		select code_uid,code_name,code_parent,code_number from cd_list where code_depth=1 and code_is_view=1 order by code_d1
+		]]>
+	</select>
+	
+	<!-- VOD 서브코드 조회 -->
+	<select id="getSubCd" parameterClass="int" resultClass="vodCode">
+		<![CDATA[
+		select code_uid,code_name,code_parent,code_number from cd_list where code_parent=#maincd# and code_depth=2 and code_is_view=1 order by code_d2
+		]]>
+	</select>
+	
+	<!-- VOD 리스트 얻기 -->
+	<select id="listVod" parameterClass="vodParameter" resultClass="vod">
+		<![CDATA[
+		select num, subcd, title, urlfile, photo_url, vodcode,substr(firstdt,1,4)||'-'||substr(firstdt,5,2)||'-'||substr(firstdt,7,2) firstdt,wdate,flv,view_cnt
+			,(select code_name from cd_list where trim(code_number)=trim(b.subcd)) code_name,web_view,hotvod from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select num, subcd, title, urlfile, vodcode, photo_url,firstdt,view_cnt,wdate,flv,web_view,hotvod from vodlist 
+						where 1=1 $codeAnd$ $schAnd$
+						order by firstdt desc,num desc) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+	
+	<!-- VOD 리스트 카운트 -->
+	<select id="cntVod" parameterClass="vodParameter" resultClass="int">
+		<![CDATA[
+		select count(*) from vodlist where 1=1 $codeAnd$ $schAnd$
+		]]>
+	</select>
+	
+	<insert id="insertVod" parameterClass="vod">
+		<![CDATA[
+		insert into vodlist(num,no,maincd,subcd,vodcode,vodname,firstdt,title,goal,character,run_time,pd
+			,urlfile,speed1,filechk,wdate,flv,web_view,size_chk
+			,view_cnt,ldate,photo_url,hotvod,content)
+		values(#num#,#num#,#maincd#,#subcd#,#num#,#title#,#firstdt#,#title#,#goal#,#character#,#run_time#,#pd#
+			,#urlfile#,#speed1#,#filechk#,to_char(sysdate, 'yyyymmddhh24miss'),#flv#,#web_view#,#size_chk#
+			,#view_cnt#,#ldate#,#photo_url#,#hotvod#,#content#)
+		]]>
+	</insert>
+	
+	<!-- VOD 정보 조회 -->
+	<select id="getVod" parameterClass="int" resultClass="vod">
+		<![CDATA[
+		select maincd,subcd,vodname,firstdt,title,goal,character,run_time,pd,urlfile,photo_url,flv,web_view,content from vodlist where num=#num#
+		]]>
+	</select>
+	
+	<update id="updateVod" parameterClass="vod">
+		<![CDATA[
+		update vodlist set 
+				maincd=#maincd#,
+				subcd=#subcd#,
+				vodname=#title#,
+				firstdt=#firstdt#,
+				title=#title#,
+				goal=#goal#,
+				character=#character#,
+				run_time=#run_time#,
+				pd=#pd#,
+				urlfile=#urlfile#,
+				photo_url=#photo_url#,
+				flv=#flv#,
+				web_view=#web_view#,
+				content=#content#
+			where num=#num#
+		]]>
+	</update>
+	<!-- VOD 이미지 위치 조회 -->
+	<select id="getVodImage" parameterClass="commonDelete" resultClass="string">
+		<![CDATA[
+		select photo_url from vodlist where $where$
+		]]>
+	</select>
+	<!-- e:VOD 관리 -->
+	
+	<!-- s:게시판 관리 -->
+	<!-- 게시판 정보 읽어오기 -->
+	<select id="listBoard" resultClass="boardConfig">
+		<![CDATA[
+		select cfg_uid,cfg_board_id,cfg_board_table,cfg_board_name,cfg_regdate from bd_config order by cfg_regdate
+		]]>
+	</select>
+	<!-- 게시판 게시글 카운트 가져오기 -->
+	<select id="cntBoard" parameterClass="string" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from $boardTAble$
+		]]>
+	</select>
+	
+	<delete id="dropTable" parameterClass="string">
+		<![CDATA[
+		drop table bd_$boardId$
+		]]>
+	</delete>
+	<!-- e:게시판 관리 -->
+	
+	<!-- s:기타관리 -->
+	<!-- 팝업 리스트 조회 -->
+	<select id="listPopup" parameterClass="popupParameter" resultClass="popup">
+		<![CDATA[
+		select pu_uid, pu_title, pu_width, pu_height, pu_is_active, pu_is_skin, to_char(pu_start, 'YYYY-MM-DD') pu_start, to_char(pu_end, 'YYYY-MM-DD') pu_end, pu_regdate from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select pu_uid, pu_title, pu_width, pu_height, pu_is_active, pu_is_skin, pu_start, pu_end, pu_regdate from et_popup order by pu_uid desc
+					) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 팝업 숫자 조회 -->
+	<select id="cntPopup" parameterClass="popupParameter" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from et_popup
+		]]>
+	</select>
+	<!-- 팝업 정보 조회 -->
+	<select id="getPopup" parameterClass="int" resultClass="popup">
+		<![CDATA[
+		select pu_uid,pu_adad_id,pu_title,pu_contents,pu_top,pu_left,pu_width,pu_height,pu_is_active,to_char(pu_start, 'YYYY-MM-DD') pu_start, to_char(pu_end, 'YYYY-MM-DD') pu_end,pu_bgcolor,pu_is_skin,pu_is_html 
+			from et_popup where pu_uid=#uid#
+		]]>
+	</select>
+	<insert id="insertPopup" parameterClass="popup">
+		<![CDATA[
+		insert into et_popup(pu_uid,pu_adad_id,pu_title,pu_contents,pu_left,pu_top,pu_width,pu_height,pu_is_active,pu_start,pu_end,pu_bgcolor,pu_is_skin,pu_is_html,pu_regdate)
+			values(seq_et_popup.nextval,#pu_adad_id#,#pu_title#,#pu_contents#,#pu_left#,#pu_top#,#pu_width#,#pu_height#,#pu_is_active#,#pu_start#,#pu_end#,#pu_bgcolor#,#pu_is_skin#,#pu_is_html#,sysdate)
+		]]>
+	</insert>
+	<update id="updatePopup" parameterClass="popup">
+		<![CDATA[
+		update et_popup set pu_title=#pu_title#,pu_contents=#pu_contents#,pu_left=#pu_left#,pu_top=#pu_top#,pu_width=#pu_width#,pu_height=#pu_height#
+				,pu_is_active=#pu_is_active#,pu_start=#pu_start#,pu_end=#pu_end#,pu_bgcolor=#pu_bgcolor#,pu_is_skin=#pu_is_skin#,pu_is_html=#pu_is_html#
+			where pu_uid=#pu_uid#
+		]]>
+	</update>
+	<delete id="deletePopup" parameterClass="int">
+		<![CDATA[
+		delete from et_popup where pu_uid=#pu_uid#
+		]]>
+	</delete>
+	<select id="listVodWeek" parameterClass="string" resultClass="vodWeek">
+		<![CDATA[
+		select * from et_vodweek order by ldate desc
+		]]>
+	</select>
+	<insert id="insertVodWeek" parameterClass="vodWeek">
+		<![CDATA[
+		insert into et_vodweek(ldate, title, image_url, regdate)
+			values(#ldate#, #title#, #image_url#, sysdate)
+		]]>
+	</insert>
+	<delete id="deleteVodWeek" parameterClass="string">
+		<![CDATA[
+		delete from et_vodweek where ldate=#ldate#
+		]]>
+	</delete>
+	<!-- e:기타관리 -->
+	
+	<!-- s:편성표 -->
+	<!-- 편성표 스케쥴 조회 -->
+	<select id="listSchedule" parameterClass="scheduleParameter" resultClass="Schedule">
+		<![CDATA[
+		select * from (
+			select rownum as linenum,a.* from (
+				select * from (
+					select num, title, firstdt from sch_list order by firstdt desc
+					) where rownum<=#rowEnd#
+				) a
+			) b where linenum>=#rowBegin#
+		]]>
+	</select>
+	<!-- 편성표 숫자 조회 -->
+	<select id="cntSchedule" parameterClass="scheduleParameter" resultClass="int">
+		<![CDATA[
+		select count(*) cnt from sch_list
+		]]>
+	</select>
+	<!-- 등록된 편성표 마지막날 조회 -->
+	<select id="getScheduleMaxDate" resultClass="string">
+		<![CDATA[
+		select max(firstdt) maxDate from sch_list
+		]]>
+	</select>
+	<!-- 편성표 정보 조회 -->
+	<select id="getSchedule" parameterClass="string" resultClass="string">
+		<![CDATA[
+		select content from sch_list where firstdt=#prevWeek# and rownum<=1
+		]]>
+	</select>
+	<!-- 편성표 등록 -->
+	<insert id="insertSchedule" parameterClass="schedule">
+		<![CDATA[
+		insert into sch_list(num, pd, title, firstdt, content)
+			values((select max(num)+1 from sch_list), #pd#, #title#, #firstdt#, #content#)
+		]]>
+	</insert>
+	<!-- 편성표 업데이트 -->
+	<update id="updateSchedule" parameterClass="schedule">
+		<![CDATA[
+		update sch_list set pd=#pd#,title=#title#,content=#content# where firstdt=#firstdt#
+		]]>
+	</update>
+	<!-- e:편성표 -->
+	
+	<!-- s:자막뉴스 -->
+	<!-- 자막뉴스 조회 -->
+	<select id="getLineNews" resultClass="lineNews">
+		<![CDATA[
+		select bd_userid,bd_contents from bd_jamak where bd_uid = 393
+		]]>
+	</select>
+	
+	<!-- 자막뉴스 업데이트 -->
+	<update id="updateLineNews" parameterClass="lineNews">
+		<![CDATA[
+		update bd_jamak set bd_contents=#bd_contents:CLOB# where bd_uid = 393
+		]]>
+	</update>
+	<!-- e:자막뉴스 -->
+</sqlMap>

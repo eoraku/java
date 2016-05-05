@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>제주 돼지를 구하러 출발!!</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/sam/130421sam.wmv"/>
+	</Entry>
+</ASX>

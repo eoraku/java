@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>세계화 시대와 글로벌 마인드 - 이영권(세계화전략연구소 소장)</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/rel/121212glo.wmv"/>
+	</Entry>
+</ASX>

@@ -1,0 +1,52 @@
+
+
+<html>
+
+<!-- ** 기관측 샘플 소스 ** -->
+<head>
+<title>::::세틀뱅크에 오신 걸 환영합니다::::</title>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+
+//---------------------------------------------------------  
+
+//성명조회
+function TEST() {
+
+	var f = document.nameSer;
+	f.action	=	"http://www.settlebank.co.kr/servlet/NameSerMgrServlet2";
+	f.target	=	'win';
+	window.open("","win");
+	f.submit();
+
+}
+
+
+//-->
+</script>
+</head>
+
+<body>
+
+
+<form name="nameSer" method="post">
+<input type="hidden" name="RETURN_PAGE_URL" value="http://www.kctvjeju.com/real/van_nametest_corp2_return.jsp"> <!-- 이 값은 기관에서 원하는 리턴값으로 변경하십시오.-->
+<input type="hidden" name="ACT_TP" value="ACCOUNT_NAME_CONFIRM">
+<input type="hidden" name="corpId" value="20000121">
+<input type="hidden" name="ID" value="kctv77">
+<p  align="center" valign="middle">
+<table height="100">
+<tr><td>&nbsp;</td></tr>
+</table>
+<p>
+<!-- 은행명은 기관에서 필요하신 은행명을 추가하시면 됩니다. 테스트에서는 농협 중앙회만 조회가능합니다.-->
+<p align="center" valign="middle">은행 명:<select name="bankCd" > 
+                                          <option value="11">농협중앙회</option></select><br></p>
+<p align="center" valign="middle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;계좌번호:<input type="text" name="accountNo" value=""></p>
+<p align="center" valign="middle"><a href="javascript:TEST();">[성명 조회]</a></p>
+<p>
+
+
+</form>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>글로벌시대가 요구하는 소통형 인재 - 조벽 동국대 교수</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/rel/130508glo.wmv"/>
+	</Entry>
+</ASX>

@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>KCTV특별기획 동일본 대지진 2주년 - 일본의 눈물을 만나다</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/mad/130222ch5.wmv"/>
+	</Entry>
+</ASX>

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<context:annotation-config />
+
+	<mvc:annotation-driven />
+
+	<util:properties id="config" location="classpath:config.properties" />
+	
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json"></entry>
+				<entry key="xml" value="text/xml"></entry>
+				<entry key="htm" value="text/html"></entry>
+				<entry key="html" value="text/html"></entry>
+			</map>
+		</property>
+		<property name="defaultContentType" value="text/html"></property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>text/plain;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!-- <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"> 
+		<property name="contentType" value="text/html;charset=UTF-8"/> </bean> -->
+
+	<bean id="includeController" class="kctv.web.include.IncludeController" />
+	<bean id="indexController" class="kctv.web.index.IndexController" />
+	<bean id="vodController" class="kctv.web.vod.VodController" />
+	<bean id="userController" class="kctv.web.user.UserController" />
+	<bean id="boardController" class="kctv.web.board.BoardController" />
+	<bean id="cmsController" class="kctv.web.cms.CmsController" />
+	<bean id="companyController" class="kctv.web.cms.CompanyController" />
+	<bean id="productController" class="kctv.web.cms.ProductController" />
+	<bean id="chGuideController" class="kctv.web.cms.ChGuideController" />
+	<bean id="programController" class="kctv.web.cms.ProgramController" />
+	<bean id="customerController" class="kctv.web.cms.CustomerController" />
+	<bean id="memberController" class="kctv.web.cms.MemberController" />
+	<bean id="cPublicController" class="kctv.web.cms.CPublicController" />
+	<bean id="sitemapController" class="kctv.web.cms.SitemapController" />
+	<bean id="kctvnController" class="kctv.web.cms.KctvnController" />
+	<bean id="eventController" class="kctv.web.event.EventController" />
+	<bean id="newsController" class="kctv.web.news.NewsController" />
+	<bean id="engController" class="kctv.web.news.EngController" />
+	<bean id="chiController" class="kctv.web.news.ChiController" />
+	<bean id="weatherController" class="kctv.web.weather.WeatherController" />
+
+	<bean id="searchController" class="kctv.web.search.SearchController" />
+
+	<bean id="popupController" class="kctv.web.common.PopupController" />
+
+	<bean id="errorController" class="kctv.web.error.ErrorController" />
+
+	<bean id="xmlController" class="kctv.xml.XmlController" />
+
+	<bean id="boardNotice" class="kctv.web.board.BoardNotice" />
+
+	<bean id="nodejsController" class="kctv.nodejs.NodejsController" />
+
+	<bean id="mvnoController" class="kctv.web.mvno.MvnoController" />
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSourcePool" />
+	</bean>
+
+	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+	<bean id="sqlMapClientTemplateSMS" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClientSMS" />
+	</bean>
+
+	<bean id="sqlMapClientTemplateWeather" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClientWeather" />
+	</bean>
+
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="dataSource" ref="dataSourcePool" />
+		<property name="configLocation" value="/WEB-INF/SqlMapConfig.xml" />
+		<!--9i에서 필요 <property name="lobHandler" ref="oracleLobHandler"/> -->
+	</bean>
+
+	<bean id="sqlMapClientSMS" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="dataSource" ref="dataSourceSMS" />
+		<property name="configLocation" value="/WEB-INF/SqlMapConfigSMS.xml" />
+		<!--9i에서 필요 <property name="lobHandler" ref="oracleLobHandler"/> -->
+	</bean>
+
+	<bean id="sqlMapClientWeather" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="dataSource" ref="dataSourceWeather" />
+		<property name="configLocation" value="/WEB-INF/SqlMapConfigWeather.xml" />
+	</bean>
+
+	<bean id="dataSourcePool" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/kctv" />
+		<property name="resourceRef" value="true" />
+	</bean>
+
+	<bean id="dataSourceSMS" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/sms" />
+		<property name="resourceRef" value="true" />
+	</bean>
+
+	<bean id="dataSourceWeather" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/weather" />
+		<property name="resourceRef" value="true" />
+	</bean>
+
+	<!-- <bean id="dataSourcePool" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> 
+		<property name="url" value="jdbc:oracle:thin:@122.202.129.90:1521:orcl"/> 
+		<property name="username" value="kctv2"/> <property name="password" value="kctv2"/> 
+		</bean> -->
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSourcePool" />
+	</bean>
+
+	<!--9i에서 필요 <bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler" 
+		lazy-init="true"> <property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/> 
+		</bean> <bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor" 
+		lazy-init="true"/> -->
+
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="order" value="1" />
+		<property name="exceptionMappings">
+			<props>
+				<prop key="kctv.exception.ErrorMsg">errorMsg</prop>
+				<prop key="NoSuchRequestHandlingMethodException">pageNotFoundError</prop>
+			</props>
+		</property>
+		<property name="defaultErrorView" value="pageNotFoundError" />
+		<property name="exceptionAttribute" value="exception" />
+	</bean>
+</beans>

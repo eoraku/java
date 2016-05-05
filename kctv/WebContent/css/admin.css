@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+
+/* CSS Document */
+
+/* 스타일시트정의하기 <LINK REL="stylesheet" HREF= "CSS파일 경로" TYPE="text/css">  */
+
+/* 전페이지 text */
+body,table,td,tr,font{
+	font-size:12px;
+	font-family:"굴림,굴림체";
+	color:#4D4D4D;
+	line-height:140%;
+}
+/* 일반링크 */
+A:active{	font-family: "굴림,굴림체"; color:#3C3C3C;text-decoration: none;}
+A:visited{font-family: "굴림,굴림체"; color:#3C3C3C;text-decoration: none;}
+A:hover {	font-family: "굴림,굴림체";	color:#FF8000; text-decoration: underline;}
+a:link{		font-family: "굴림,굴림체";	color:#3C3C3C; text-decoration: none;}
+
+
+/* Left 메뉴 링크 */
+A.left_menu:active{	font-family: "굴림,굴림체";	color:#444444; text-decoration: none;}
+A.left_menu:visited{font-family: "굴림,굴림체";	color:#444444; text-decoration: none;}
+A.left_menu:hover{	font-family: "굴림,굴림체";	color:#FF3333; text-decoration: underline;}
+A.left_menu:link{		font-family: "굴림,굴림체";	color:#444444; text-decoration: none;}
+
+a {
+	font-family:돋음체;
+	font-size:9pt;
+	color:0080c0;
+	text-decoration:none;
+	font-weight:normal;
+}
+
+a:hover {
+	font-family:돋음체;
+	font-size:9pt;
+	text-decoration:bold;
+	color:blue;
+}
+a:active {
+	font-family:돋음체;
+	font-size:9pt;
+	color:404040;
+}
+td {font-family:돋음체;font-size:10pt; text-decoration:none}
+th {font-family:돋음체;font-size:10pt; text-decoration:none;color:white;}
+
+/*폼*/
+.input{
+	FONT-SIZE: 11px;
+	color:5D5D5D;
+	background-color:#f6f6f6;
+	border: 1px solid #9E9E9E;
+	list-style-position: inside;
+	list-style-type: none;
+}
+
+/*커서관련*/
+.cursor {
+	cursor:hand;
+}
+
+.button_1{
+	border-color:#B0B0B0;
+	background-color:#666666;
+	color:#FFFFFF;
+	font-weight:bold;
+	padding-bottom:2;
+	padding-top:2;
+	height:22;
+}
+
+#div_btm_pages{display:block;width:100%;height:30px;padding:10px;text-align:center;}
+/* 페이징 */
+#ul_board_pages{height:30px;display:inline-block;}
+	#ul_board_pages td{float:left;}
+	#ul_board_pages a{float:left;padding:3px 5px 3px 5px;margin:3px;font-size:10pt;font-weight:bold;text-align:center;}
+	#ul_board_pages a:link{color:#444444;text-decoration:none;}
+	#ul_board_pages a:visited{color:#444444;text-decoration:none;}
+	#ul_board_pages a:active{color:#444444;text-decoration:none;}
+	#ul_board_pages a:hover{color:#FF7800;text-decoration:underline;}
+	#ul_board_pages div{float:left;padding:3px 5px 3px 5px;margin:3px;font-size:10pt;font-weight:bold;text-align:center;}
+	#ul_board_pages .page_curr{border:1px solid #e5e5e5;color:#FF7800;}
+	#ul_board_pages .page_prev{border:1px solid #e5e5e5;padding-left:14px;background:url(../images/board/btn_arrow_prev.gif) no-repeat 5px 7px;}
+	#ul_board_pages .page_next{border:1px solid #e5e5e5;padding-right:12px;background:url(../images/board/btn_arrow_next.gif) no-repeat 77px 7px;}
+	#ul_board_pages .page_link{border:1px solid #ffffff;}
+	#ul_board_pages .page_link.over{border-color:#e5e5e5;}

@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>캐나다 여중생들의 아주 특별한 제주 방문기</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/130405ins.wmv"/>
+	</Entry>
+</ASX>

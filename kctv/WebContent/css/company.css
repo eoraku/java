@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+#content_top{background:url(../images/company/bg_content_title.jpg) repeat-x;}
+
+#content_main{width:760px;margin-top:10px;}
+
+#company_story{width:590px;margin:auto;margin-top:10px;}
+	#company_story dt{float:left;width:590px;height:20px;margin-top:10px;}
+	#company_story .dd_story_even{float:left;width:540px;height:20px;margin-left:23px;padding-left:10px;padding-top:7px;border-bottom:1px solid #eeeeee;background-color:#f6f6f3}
+	#company_story .dd_story_odd{float:left;width:540px;height:20px;margin-left:23px;padding-left:10px;padding-top:7px;border-bottom:1px solid #eeeeee;background-color:#ffffff}
+	#company_story .dd_story_btm{float:left;width:540px;height:20px;}
+	#company_story .li_date{float:left;width:120px;height:20px;font-weight:bold;color:#666699;}
+	#company_story .li_text{float:left;width:420px;height:20px;}
+
+#event_story{width:590px;margin:10px auto;margin-top:10px;}
+	#event_story .li_event_even{float:left;width:590px;height:27px;padding-top:7px;border-bottom:1px solid #eeeeee;background-color:#f6f6f3}
+	#event_story .li_event_odd{float:left;width:590px;height:27px;padding-top:7px;border-bottom:1px solid #eeeeee;background-color:#ffffff}
+	#event_story .li_event_btm{float:left;width:590px;height:20px;}
+	#event_story dt{float:left;width:110px;height:21px;padding-left:20px;margin-top:4px;font-weight:bold;color:#666699;}
+	#event_story .li_text{float:left;height:21px;margin-top:4px;}
+	#event_story .li_img{float:left;height:20px;margin-left:5px;}

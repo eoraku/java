@@ -1,0 +1,199 @@
+@charset "utf-8";
+
+/*#main_scroll{float:left;width:936px;height:311px;margin-bottom:10px;}
+	#scroll_img{width:936px;height:279px;}
+	#scroll_circle{float:left;width:930px;margin-left:3px;margin-right:3px;height:32px;background-color:#E4E4E4;}
+	#scroll_circle ul{width:138px;height:17px;margin:auto;margin-top:5px;}
+	#scroll_circle li{float:left;margin:3px;}*/
+
+/* s:매인 배너 */
+#mainBanner{position:relative;width:936px;height:295px;}
+#mainBanner .imgBanner{position:absolute;left:0;top:0;width:936px;height:295px}
+#mainBanner .divBanner{position:absolute;top:260px;left:3px;width:930px;height:25px;padding-top:10px;color:#ffffff;text-align:center;}
+#mainBanner .divBanner a:link{color:#ffffff;text-decoration:none;font-size:12pt;font-weight:bold;}
+#mainBanner .divBanner a:visited{color:#ffffff;text-decoration:none;font-size:12pt;font-weight:bold;}
+#mainBanner .divBanner a:active{color:#ffffff;text-decoration:none;font-size:12pt;font-weight:bold;}
+#mainBanner .divBanner a:hover{color:#ffffff;text-decoration:underline;font-size:12pt;font-weight:bold;}
+
+#mainBanner #divBannerNews{position:absolute;top:227px;left:170px;height:85px;text-align:left;}
+#mainBanner #divBannerNews a:link{color:#eeeeee;text-decoration:none;}
+#mainBanner #divBannerNews a:visited{color:#eeeeee;text-decoration:none;}
+#mainBanner #divBannerNews a:active{color:#eeeeee;text-decoration:none;}
+#mainBanner #divBannerNews a:hover{color:#ffffff;text-decoration:underline;}
+
+#mainBanner #ulBannerSam{position:absolute;top:76px;left:1px;width:400px;height:90px;}
+#mainBanner #ulBannerSam li{float:left;display:inline;width:400px;height:18px;text-align:right;overflow:hidden;}
+#mainBanner #ulBannerSam a{padding-right:10px;background:url(../images/banner/dot_sam.png) no-repeat right 3px;font-weight:bold;text-shadow:}
+#mainBanner #ulBannerSam a:link{color:#444444;text-decoration:none;}
+#mainBanner #ulBannerSam a:visited{color:#444444;text-decoration:none;}
+#mainBanner #ulBannerSam a:active{color:#444444;text-decoration:none;}
+#mainBanner #ulBannerSam a:hover{color:#000000;text-decoration:underline;}
+
+#mainBanner #divBannerBic{position:absolute;top:53px;left:3px;width:420px;height:165px;padding-top:10px;padding-left:10px;}
+#mainBanner #divBannerBic td{padding:2px;}
+#mainBanner #divBannerBic a:link{color:#eeeeee;text-decoration:none;}
+#mainBanner #divBannerBic a:visited{color:#eeeeee;text-decoration:none;}
+#mainBanner #divBannerBic a:active{color:#eeeeee;text-decoration:none;}
+#mainBanner #divBannerBic a:hover{color:#ffffff;text-decoration:underline;}
+
+#mainBanner #divBannerDoc a:link{color:#444444;text-decoration:none;}
+#mainBanner #divBannerDoc a:visited{color:#444444;text-decoration:none;}
+#mainBanner #divBannerDoc a:active{color:#444444;text-decoration:none;}
+#mainBanner #divBannerDoc a:hover{color:#000000;text-decoration:underline;}
+#mainBanner #divBannerDocBrain{position:absolute;top:85px;left:175px;}
+#mainBanner #divBannerDocNeck{position:absolute;top:155px;left:155px;}
+#mainBanner #divBannerDocShoulder{position:absolute;top:85px;left:300px;}
+#mainBanner #divBannerDocBack{position:absolute;top:195px;left:340px;}
+#mainBanner #divBannerDocHeart{position:absolute;top:250px;left:379px;}
+
+#mainBanner #ulBannerVod{position:absolute;top:227px;left:372px;}
+#mainBanner #ulBannerVod li{float:left;display:inline;width:400px;height:20px;text-align:left;overflow:hidden;}
+#mainBanner #ulBannerVod a:link{color:#ffffff;text-decoration:none;}
+#mainBanner #ulBannerVod a:visited{color:#ffffff;text-decoration:none;}
+#mainBanner #ulBannerVod a:active{color:#ffffff;text-decoration:none;}
+#mainBanner #ulBannerVod a:hover{color:#FF2D2F;text-decoration:underline;}
+
+#mainBannerTab{margin:auto;width:930px;height:25px;margin-bottom:10px;background-color:#E4E4E4;}
+#mainBannerTab ul{width:105px;height:17px;margin:auto;padding-top:2px;}
+#mainBannerTab li{float:left;display:inline;width:17px;height:17px;margin:2px;}
+/* e:매인 배너 */
+
+#main_left{float:left;width:221px;margin-left:3px;}
+	/* 왼쪽 배너 */
+	#div_banner_left {float:left;width:221px;}
+	
+	/* s:공지 */
+	#div_notice{float:left;width:219px;height:153px;border:1px solid #E5E1E1;}
+	#notice_top{width:219px;height:28px;background:url(../images/index/left_title_back.gif) no-repeat;}
+	#notice_top_title{float:left;width:150px;height:16px;padding:6px;}
+	#notice_top_more{float:right;width:50px;height:16px;margin-top:10px;}
+	#notice_body{float:left;width:214px;height:120px;padding-left:5px;padding-top:5px;}
+	#notice_body li{width:204px;height:19px;text-align:left;padding-top:4px;padding-left:10px;overflow:hidden;background:url(../images/common/bullet_blue.png) no-repeat 3px 8px;}
+
+	/* s:편성표 */
+	#div_schedule{float:left;width:219px;height:225px;border:1px solid #E5E1E1;margin-top:10px;}
+	#schedule_top{width:219px;height:28px;background:url(../images/index/left_title_back.gif) no-repeat;}
+	#schedule_top_title{float:left;width:150px;height:16px;padding:6px;}
+	#schedule_top_more{float:right;width:50px;height:16px;margin-top:10px;}
+	#schedule_body{float:left;width:214px;height:187px;padding-left:5px;padding-top:5px;}
+	#schedule_body li{width:204px;height:19px;text-align:left;padding-left:10px;padding-top:4px;overflow:hidden;}
+	#schedule_body a{display:block;width:168px;height:16px;overflow:hidden;word-break:break-all;}
+	#schedule_body span{display:block;width:200px;height:16px;overflow:hidden;word-break:break-all;}
+	#schedule_body .schedule_list{background:url(../images/common/bullet_blue.png) no-repeat 3px 8px;}
+	#schedule_body .schedule_now{background:url(../images/index/schedule_back.gif) no-repeat;}
+
+	/* s:CH7 화제의 영상 */
+	#div_hotMovie{float:left;width:219px;border:1px solid #E5E1E1;margin-top:10px;}
+	#hotMovie_top{width:219px;height:28px;background:url(../images/index/left_title_back.gif) no-repeat;}
+	#hotMovie_top_title{float:left;width:150px;height:16px;padding:6px;}
+	#hotMovie_top_more{float:right;width:50px;height:16px;margin-top:10px;}
+	#hotMovie_body{float:left;width:219px;height:330px;margin-left:5px;}
+	#hotMovie_body li{float:left;width:209px;height:60px;padding-top:5px;overflow:hidden;}
+	#hotMovie_body .hotMovie_body_image{float:left;width:109px;height:60px;}
+	#hotMovie_body .hotMovie_body_text{float:right;width:100px;height:55px;padding-top:5px;overflow:hidden;}
+
+	/* s: KCTV 공식 SNS */
+	#socialService{float:left;width:219px;border:1px solid #E5E1E1; margin-top:10px;}
+	#socialServiceTop{width:219px;height:28px;background:url(../images/index/left_title_back.gif) no-repeat;}
+	#socialServiceTitle{float:left;width:150px;height:16px;padding:6px;}
+	#socialServiceBody{float:left;width:219px;height:90px;margin-left:2px;text-align:center;}
+	#socialServiceIcon .socialServiceImage{float:left;width:50px;height:50px;margin:8px 2px 5px 2px;}
+	
+	#main_center{float:left;width:453px;margin-left:10px;}
+	/* s:최신 뉴스 목록 */
+	#div_news_latest{float:left;width:453px;height:140px;}
+	#div_news_latest #news_latest_top{float:left;width:453px;height:25px;background:url(../images/index/tab_latest_news.png) no-repeat;}
+	#div_news_latest #news_latest_top_title{float:left;width:80px;height:20px;margin-left:5px;margin-top:1px;}
+	#div_news_latest #news_latest_top_tab{float:right;width:334px;height:24px;}
+	#div_news_latest #news_latest_top_tab li{float:left;height:24px;cursor:pointer;position:relative;}
+	#div_news_latest #news_latest_top_tab #news_latest_1{left:-113px;top:30px;}
+	#div_news_latest #news_latest_top_tab #news_latest_2{left:-168px;top:30px;}
+	#div_news_latest #news_latest_top_tab #news_latest_3{left:-223px;top:30px;}
+	#div_news_latest #news_latest_top_tab #news_latest_4{left:-278px;top:30px;}
+	#div_news_latest #news_latest_top_tab #news_latest_5{left:-333px;top:30px;}
+	#div_news_latest #news_latest_list{float:left;width:440px;height:110px;margin-left:5px;margin-top:5px;}
+		#div_news_latest .news_latest{position:absolute;width:440px;display:none;}
+		#div_news_latest .news_latest_list_top{float:left;width:132px;height:110px;}
+		#div_news_latest .latest_news_image{float:left;width:126px;height:69px;margin:3px;}
+		#div_news_latest .latest_news_text{float:left;width:126px;height:33px;margin-top:2px;overflow:hidden;word-break:break-all;}
+		#div_news_latest .latest_news_text a:link{color:#444444;text-decoration:none;}
+		#div_news_latest .latest_news_text a:visited{color:#444444;text-decoration:none;}
+		#div_news_latest .latest_news_text a:active{color:#444444;text-decoration:none;}
+		#div_news_latest .latest_news_text a:hover{color:#444444;text-decoration:underline;}
+		#div_news_latest .news_latest_list_body{float:left;width:298px;height:107px;margin-left:10px;}
+		#div_news_latest .news_latest_list_body a:link{color:#444444;text-decoration:none;}
+		#div_news_latest .news_latest_list_body a:visited{color:#444444;text-decoration:none;}
+		#div_news_latest .news_latest_list_body a:active{color:#444444;text-decoration:none;}
+		#div_news_latest .news_latest_list_body a:hover{color:#444444;text-decoration:underline;}
+		#div_news_latest .news_latest_list_body li{float:left;width:290px;height:18px;padding-left:8px;margin-top:3px;background:url(../images/common/bullet_blue.png) no-repeat 0 8px;line-height:200%;overflow:hidden;}
+		#div_news_latest .news_latest_list_body li:first-child a{color:#264aa9;}
+
+	/* s:CH7최신VOD */
+	#div_ch7_vod{float:left;width:453px;margin-top:10px;}
+	#ch7_vod_top{float:left;width:451px;height:24px;margin-top:5px;}
+	#ch7_vod_top_title{float:left;width:120px;margin-left:10px;}
+	#ch7_vod_top_search{float:left;width:270px;}
+	#ch7_vod_top_more{float:right;width:50px;margin-top:10px;}
+	#ch7_vod_tab{float:left;width:451px;height:19px;background:url(../images/index/ch7_vod_tab.png) no-repeat;}
+	#ch7_vod_tab ul{margin-left:10px;}
+	#ch7_vod_tab li{float:left;height:19px;cursor:pointer;}
+	#ch7_vod_body{float:left;width:441px;padding:5px;}
+	#ch7_vod_body ul li{float:left;width:110px;height:80px;text-align:center;}
+
+	#ch7_vod_top_search ul{float:left;width:228px;height:22px;background-color:#303D4D;}
+	#ch7_vod_top_search li{float:left;}
+	#ch7_vod_top_search input{width:180px;height:16px;margin-left:2px;margin-top:2px;border:0;background-color:#ffffff;}
+	#ch7_vod_top_search img{margin-left:0px;margin-top:2px;border:0;}
+
+	/* s:외국어존 */
+	#div_foreigner_zone{float:left;width:453px;margin-top:10px;}
+	#foreigner_zone_top{float:left;width:451px;height:20px;border-bottom:1px solid #E5E1E1;}
+	#foreigner_zone_top_title{float:left;width:100px;margin-left:10px;}
+	#foreigner_zone_top_more{float:right;width:50px;margin-top:4px;}
+	#foreigner_zone_body{float:left;width:451px;}
+	#foreigner_zone_body ul{margin-top:5px;}
+	#foreigner_zone_body ul li{float:left;width:90px;height:86px;text-align:center;}
+
+	/* s:최신 VOD */
+	#div_latest_vod{float:left;width:453px;margin-top:10px;}
+	#latest_vod_top{float:left;width:451px;height:20px;border-bottom:1px solid #E5E1E1;}
+	#latest_vod_top_title{float:left;width:100px;margin-left:10px;}
+	#latest_vod_top_more{float:right;width:50px;margin-top:4px;}
+	#latest_vod_body{float:left;width:441px;padding:5px;}
+	#latest_vod_body ul li{float:left;width:80px;height:100px;padding:4px;}
+
+	/* s:TOP VOD */
+	#div_top_vod{float:left;width:453px;margin-top:10px;}
+	#top_vod_top{float:left;width:451px;height:20px;border-bottom:1px solid #E5E1E1;}
+	#top_vod_top_title{float:left;width:100px;margin-left:10px;}
+	#top_vod_top_more{float:right;width:50px;margin-top:4px;}
+	#top_vod_body{float:left;width:441px;padding:5px;}
+	#top_vod_body ul li{float:left;width:80px;height:100px;padding:4px;}
+	#top_vod_body .top_vod_rank{position:relative;left:0px;top:-100px;width:29px;height:29px;}
+
+	/* s:행사 & 알림 */
+	#div_event_notice{float:left;width:453px;margin-top:10px;}
+	#event_notice_top{float:left;width:451px;height:20px;border-bottom:1px solid #E5E1E1;}
+	#event_notice_top_title{float:left;width:100px;margin-left:10px;}
+	#event_notice_top_more{float:right;width:50px;margin-top:4px;}
+	#event_notice_body{float:left;width:431px;padding:10px;}
+	#event_notice_body iframe{width:430px;height:270px;}
+
+#main_right_banner{float:right;width:236px;height:205px;margin-right:3px;margin-bottom:5px;}
+	#main_right_banner ul{float:left;width:236px;}
+	#main_right_banner #main_right_list{height:100px;margin-bottom:5px;}
+	#main_right_banner #main_right_list li{float:left;width:236px;height:100px;}
+	#main_right_banner #main_right_banner_list{height:100px;overflow:hidden;}
+	#main_right_banner #main_right_banner_list li{float:left;width:236px;height:100px;}
+	#main_right_banner #main_right_banner_arrow{position:relative;width:36px;height:14px;top:-19px;left:195px;}
+	#main_right_banner #main_right_banner_arrow li{float:left;margin-left:2px;}
+	#main_right_banner #main_right_banner_prev{cursor:pointer;}
+	#main_right_banner #main_right_banner_next{cursor:pointer;}
+	/*#div_banners{float:left;width:224px;border:1px solid #E5E1E1;padding:5px;}
+	#div_banners ul{float:left;}
+	#div_banners ul li{float:left;width:224px;text-align:center;}*/
+
+#main_right{float:right;width:224px;padding:5px;margin-right:3px;border:1px solid #E5E1E1;}
+	#main_right dl{float:left;width:224px;padding-top:10px;padding-bottom:10px;}
+	#main_right dl dt{float:left;width:224px;text-align:center;padding-bottom:5px;}
+	#main_right dl dd{float:left;width:224px;text-align:center;}

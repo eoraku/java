@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>2013 새해는 당신이 주인공입니다! 2탄(2부)</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/sam/130120sam.wmv"/>
+	</Entry>
+</ASX>

@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>새로운 바다를 만나다 - 요트타고 떠나는 제주바다</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/130111sea.wmv"/>
+	</Entry>
+</ASX>

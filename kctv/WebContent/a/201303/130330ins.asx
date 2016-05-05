@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>영화 건축학개론 서연의집, 첫사랑을 영원히 추억하다</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/130330ins.wmv"/>
+	</Entry>
+</ASX>

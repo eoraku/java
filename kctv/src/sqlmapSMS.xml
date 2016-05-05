@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="kctv">
+	<typeAlias alias="smsParameter" type="kctv.sms.SmsParameter"/>
+	<typeAlias alias="sms" type="kctv.sms.TWEBSVR"/>
+	
+	<typeAlias alias="int" type="java.lang.Integer"/>
+	<typeAlias alias="string" type="java.lang.String"/>
+	
+	<select id="listSmsRequest" parameterClass="smsParameter" resultClass="sms">
+		<![CDATA[
+		select WEBSVRSRNO,WEBSVRNAME,WEBSVRHTRG,WEBSVRHTEL,WEBSVRMTRG,WEBSVRMTEL,WEBSVRPOST,WEBSVRADDR,WEBSVRMJCD,WEBSVRSVCD,WEBSVRRQDT,WEBSVRPRGB,WEBSVRRCOM from (
+			select rownum linenum,a.* from (
+				select WEBSVRSRNO,WEBSVRNAME,WEBSVRHTRG,WEBSVRHTEL,WEBSVRMTRG,WEBSVRMTEL,WEBSVRPOST,WEBSVRADDR,WEBSVRMJCD,WEBSVRSVCD,WEBSVRRQDT,WEBSVRPRGB,WEBSVRRCOM 
+					from TWEBSVR where WEBSVRUSID=#userid# order by WEBSVROPDT desc
+				) a where rownum<=#rowEnd#
+			) where linenum>=#rowBegin#
+		]]>
+	</select>
+	
+	<insert id="insertSmsRequest" parameterClass="sms">
+		<![CDATA[
+		insert into TWEBSVR(WEBSVRMSID,WEBSVRSRNO,WEBSVRUSID,WEBSVRCUST,WEBSVRNAME,WEBSVRHTRG,WEBSVRHTEL,
+							WEBSVRMTRG,WEBSVRMTEL,WEBSVRPOST,WEBSVRADDR,WEBSVRMJCD,WEBSVRSVCD,WEBSVRAPST,
+							WEBSVRAADR,WEBSVRRQDT,WEBSVRFRTM,WEBSVRTOTM,WEBSVRRCOM,WEBSVRPRGB,WEBSVRPRDT,
+							WEBSVRWMAN,WEBSVRSMSR,WEBSVRWCOM,WEBSVRCWHY,WEBSVRLMDT,WEBSVRLMID,WEBSVROPDT,
+							WEBSVROPID,WEBSVRRQBK,WEBSVRACNO,WEBSVRACNM)
+					values(#WEBSVRMSID#,#WEBSVRSRNO#,#WEBSVRUSID#,#WEBSVRCUST#,#WEBSVRNAME#,#WEBSVRHTRG#,#WEBSVRHTEL#,
+							#WEBSVRMTRG#,#WEBSVRMTEL#,#WEBSVRPOST#,#WEBSVRADDR#,#WEBSVRMJCD#,#WEBSVRSVCD#,#WEBSVRAPST#,
+							#WEBSVRAADR#,#WEBSVRRQDT#,#WEBSVRFRTM#,#WEBSVRTOTM#,#WEBSVRRCOM#,#WEBSVRPRGB#,#WEBSVRPRDT#,
+							#WEBSVRWMAN#,#WEBSVRSMSR#,#WEBSVRWCOM#,#WEBSVRCWHY#,sysdate,#WEBSVRLMID#,sysdate,
+							#WEBSVROPID#,#WEBSVRRQBK#,#WEBSVRACNO#,#WEBSVRACNM#)
+		]]>
+	</insert>
+	
+	<select id="getReceipNo" resultClass="string">
+		<![CDATA[
+		select lpad(to_char(seqcodlsno),8,'0') from tseqcod where seqcodmsid ='101' and seqcodcode = 'WEBSVRSRNO'
+		]]>
+	</select>
+	
+	<update id="setReceipNo" parameterClass="string">
+		<![CDATA[
+		update tseqcod set seqcodlsno = to_number(#srno#)+1 where seqcodmsid = '101' and seqcodcode = 'WEBSVRSRNO'
+		]]>
+	</update>
+</sqlMap>

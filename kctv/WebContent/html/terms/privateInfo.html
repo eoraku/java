@@ -1,0 +1,771 @@
+<!DOCTYPE html PUBLIC "-//W3C//Dtd XHTML 1.0 transitional//EN" "http://www.w3.org/tr/xhtml1/Dtd/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=880" />
+<title></title>
+</head>
+
+<body style="font-family: 굴림체; font-size: 10pt;">
+	<p class=MsoNormal
+		style='text-indent: 5.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>(주)KCTV제주방송(이하‘KCTV’또는‘회사’라함)에서는 회사의 서비스 이용고객, 계약명의고객,
+			요금납입고객, 홈페이지이용고객 등의 개인정보를 매우 중요하게 취급.관리 하고 있고 고객의 개인 정보를 보호하기 위하여
+			[정보통신망 이용촉진 및 정보 보호 등에 관한 법률] 및 기타 관련법률을 비롯하여 정부가 제정한 개인정보보호지침을 준수하고
+			있으며, 구체적인 내용을 고객들이 언제나 열람하고 확인할 수 있도록 홈페이지에 게재하고 있습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사의 개인정보취급방침은 다음과 같은 내용을 담고 있습니다</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1. 개인정보 수집/이용 등에 대한 동의</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 2. 개인정보의 수집항목 및 수집방법</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 3. 개인정보의 수집이용목적</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 4. 개인정보의 공유 및 제공</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 5. 제 3자 정보제공 및 개인정보 취급위탁</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 6. 수집한 개인정보의 보유 및 이용기간</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 7. 개인정보의 파기 및 절차방법</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 8. 이용자 및 법정 대리인의 권리와 그 행사방법</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 9. 개인정보보호를 위한 기술적, 관리적 대책</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 10. 쿠키에 의한 개인정보 수집</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 11. 개인정보 관리 책임자</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 12. 개인정보침해 관련 상담 및 신고</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp; 13. 정책 변경에 따른 공지의무</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1. 개인정보 수집/이용 등에 대한 동의</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 5.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사의 ‘개인정보취급방침’에 따른 고객의 개인정보 수집, 이용, 제3자 제공 및 취급 업무의 위탁 등에
+			대한 고객동의는 ‘서비스이용신청서’ 등에 첨부된 ‘개인정보 및 신용정보 제공및 활용 동의서’에 법령에서 정한 방법으로 서명
+			또는 동의한다(선택적 동의사항도 포함)라는 의사를 표시한 경우에 한하여 개인정보의 수집/ 이용/ 제공/ 취급 위탁에 동의한
+			것으로 봅니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>다만, 다음의 경우에는 관련법령의 규정에 따라 고객의 동의 없이 개인정보를 수집하고 제공할 수 있습니다
+		</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1)서비스제공에 관한 계약의 이행을 위하여 필요한 개인정보로서 경제적ㆍ기술적인 사유로 통상의 동의를
+			받는 것이 현저히 곤란한 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2)서비스제공에 따른 요금정산을 위하여 필요한 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3)통계 작성ㆍ학술 연구 또는 시장조사를 위하여 필요한 경우로서 특정개인을 식별할 수 없는 형태로
+			제공되는 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>4)금융실명거래 및 비밀보장에 관한 법률, 신용정보의 이용 및 보호에 관한 법률, 전기통신법,
+			전기통신사업법, 지방세법, 소비자보호법, 한국은행업, 형사소송법등 법률에 특별한 규정이 있는 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2. 개인정보의 수집항목 및 수집방법</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 수집하는 개인정보 항목<br /> 회사는 회원가입, 상담, 서비스 신청 등을 위해 아래와 같은
+			개인정보를 수집하고 있습니다.
+		</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>가) 수집항목 : </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 44.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 신청인의 이름, 생년월일, 성별, 로그인ID, 비밀번호, 자택 전화번호, 자택 주소, 휴대
+			전화번호, 이메일, 주민등록번호, 서비스 이용기록, 접속 로그, 쿠키, 접속 IP 정보</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 44.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- &nbsp;대리 신청인의 성명, 주민번호, 주소, 전화번호, 이메일, 계약자와의 관계</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 44.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 요금납부자의 성명, 주민번호/사업자번호, 청구지 주소, 계약자와의 관계, 전화번호,
+			이메일,금융기관명, 예금주의 성명, 계좌번호, 요금납부 방법이나 선택 사항 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 44.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 국가 유공자, 복지 할인 등의 요금감면 제공 대상여부 판단을 위한 제 증명</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2)개인정보 수집방법 : 서비스이용신청서, 인터넷, 전화, 팩스, 서비스위탁업체 등을 통해 고객이
+			제시하는 개인정보를 수집합니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 44.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 홈페이지, 인터넷, 전화등을 통한 서비스신청 시에는 간략한 개인정보 동의 취득 후 서비스 수행시
+			서비스 이용신청서를 통한 개인정보를 재수집을 합니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3. 개인정보의 수집이용 목적</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 서비스 제공에 관한 계약 이행 및 서비스 제공에 따른 요금정산 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2)서비스 신청, 변경, 해지, 개통, A/S, 회원가입, 서비스 관련 문의 등을 포함한 이용계약 관련
+			사항의 처리</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3) 콘텐츠 제공, 구매 및 요금 결제, 물품배송 또는 청구서 등 발송, 금융거래 본인 인증 및 금융
+			서비스, 요금추심 등 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>4) 고객 관리</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 33.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 서비스 이용에 따른 본인확인, 개인 식별, 불량회원의 부정 이용 방지와 비인가 사용 방지, 가입
+			의사 확인, 가입 및 가입횟수 제한, 연령확인, 만14세 미만 아동 개인정보 수집 시 법정 대리인 동의여부 확인, 불만처리
+			등 민원처리, 고지사항 전달 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>5) 마케팅 및 광고에 활용 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 신규 서비스(제품) 개발 및 특화, 인구통계학적 특성에 따른 서비스 제공 및 광고게재, 접속 빈도
+			파악, 회원의 서비스 이용에 대한 통계, 이벤트 등 광고성 정보전달, 설문조사, 경품배송 등</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>6)기타</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 개인맞춤서비스 제공</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>4. 개인정보의 공유 및 제공</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사는 고객의 동의가 있거나 관련 법령의 규정에 의한 경우를 제외하고는 어떠한 경우에도 귀하의
+			개인정보를 '개인정보의 수집이용목적' 에서 고지한 범위를 넘어 이용하거나 타인 또는 타기업, 기관에 제공하지 않습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사는 고객이 동의를 하는 경우에 한해 상기 &quot;3. 개인정보의 이용목적&quot;의 필수항목
+			중 일부 항목을 제외하고 정보를 회사가 시행하는 다음 각 호의 사업에 이용할 수 있습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 신용정보 집중기관, 신용정보업자, 신용정보 제공, 이용자 등에게 제공하여 회원의 신용을 판단하기
+			위한 자료로서 활용하거나 또는 공공기관에서 정책 자료로서 활용</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2) 회사가 영위하는 아래 업무의 일부 또는 전부를 위탁업체에게 위탁하여 그 위탁업체가 당해 위탁업무
+			수행에 제한된 범위 내에서 제공, 이용하는 경우</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 33.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 우편물, 회원유치, 유통점(대리점) 업무, 전화상담업무, 채권추심업무, 인터넷 관련서비스,
+			SMS서비스 제공, 전화권유판매업무, 정보시스템유지보수, 설치 및 A/S업무 등</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 33.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 관련 세부사항은 &quot;5. 제 3자 정보제공 및 개인정보 취급위탁&quot; 참고</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3) 회사가 다양한 서비스 제공을 위하여 아래의 목적으로 제공, 이용하는 경우</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 33.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 신상품 및 제휴상품 소개, 사은행사 및 판촉행사, 서비스이용권유, e-mail 및 SMS서비스 제공
+			등의 마케팅 활동</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 33.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 고객설문, 시장조사 및 고객만족도 조사</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 33.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 제휴 관련 세부사항은 &quot;5. 제 3자 정보제공 및 개인정보 취급위탁 &quot; 참고</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>4) 회원이 신청한 상품의 부가서비스를 제공함에 있어서 서비스 제공업체가 업무 수행을 하기 위하여
+			개인정보가 필요한 경우</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>다만, 다음의 경우에는 예외적으로 회사는 고객의 동의가 없어도 개인정보를 이미 고지 또는 명시한 범위를
+			초과하여 이용하거나 제3자에게 제공할 수 있습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 서비스제공에 따른 요금정산에 필요한 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2) 통신비밀보호법, 국세기본법, 정보통신망 이용촉진 및 정보보호 등에 관한 법률, 금융실명거래 및
+			비밀보장에 관한 법률, 신용정보의 이용 및 보호에 관한 법률, 전기통신법, 전기통신사업법, 지방세법, 소비자보호법,
+			한국은행법, 형사소송법 등 법률에 특별한 규정이 있는 경우 (단, ‘법률에 특별한 규정이 있는 경우’ 로 행정목적이나
+			수사목적으로 행정관청 또는 수사기관이 요구해 온 경우라도 법률에 규정된 바에 따라 영장 또는 기관장의 직인이 날인된 서면에
+			의한 경우 등 헌법 및 관련법률에 따른 적법한 절차에 따라 요구를 받은 경우에 한하여 고객의 개인정보를 제공합니다.) </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3) 회사는 고객에게 양질의 서비스를 제공하고 편의를 도모하기 위하여 수탁자와 비밀유지계약을 체결하여
+			업무위탁과 관련한 개인정보의 수집/이용/관리의 취급위탁을 할 수 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>5. 제 3자 정보제공 및 개인정보 취급위탁</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사는 고객에게 양질의 서비스를 제공하고 고객의 편의를 도모하기 위하여 아래와 같이 개인정보의 취급을
+			위탁하고 있습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1)개인정보의 제3자 제공현황</span>
+	</p>
+	<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+		style='border-collapse: collapse; border: none'>
+		<tr>
+			<td width=127 valign=top
+				style='width: 95.4pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>수집항목</span>
+				</p>
+			</td>
+			<td width=120 valign=top
+				style='width: 90.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>이용목적</span>
+				</p>
+			</td>
+			<td width=368 valign=top
+				style='width: 275.8pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>제공하는 개인정보항목</span>
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td width=127 valign=top
+				style='width: 95.4pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>없음</span>
+				</p>
+			</td>
+			<td width=120 valign=top
+				style='width: 90.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>&nbsp;</span>
+				</p>
+			</td>
+			<td width=368 valign=top
+				style='width: 275.8pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>&nbsp;</span>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2)개인정보 취급위탁현황</span>
+	</p>
+	<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+		style='border-collapse: collapse; border: none'>
+		<tr>
+			<td width=127 valign=top
+				style='width: 95.4pt; border: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>수집항목</span>
+				</p>
+			</td>
+			<td width=252 valign=top
+				style='width: 189.0pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>이용목적</span>
+				</p>
+			</td>
+			<td width=237 valign=top
+				style='width: 177.7pt; border: solid windowtext 1.0pt; border-left: none; padding: 0cm 5.4pt 0cm 5.4pt'>
+				<p class=MsoNormal align=center
+					style='text-align: center; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>제공하는 개인정보항목</span>
+				</p>
+			</td>
+		</tr>
+		<tr style='height: 204.65pt'>
+			<td width=127 valign=top
+				style='width: 95.4pt; border: solid windowtext 1.0pt; border-top: none; padding: 0cm 5.4pt 0cm 5.4pt; height: 204.65pt'>
+				<p class=MsoNormal align=left
+					style='text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>성명,주민번호/사업자번호,</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>주소,전화번호,이메일,</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>신청상품,댓수,정기계약,</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>장비정보,부가서비스,</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>이용요금</span>
+				</p>
+			</td>
+			<td width=252 valign=top
+				style='width: 189.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 204.65pt'>
+				<p class=MsoNormal align=left
+					style='text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>- 회사로부터 부가서비스&nbsp; 업무를 위탁 받은 업체</span>
+				</p>
+				<p class=a align=left
+					style='margin-top: 0cm; margin-right: -.6pt; margin-bottom: 0cm; margin-left: 1.65pt; margin-bottom: .0001pt; text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>- 회사로부터 청구서 발행 업무를 위탁받은 업체</span>
+				</p>
+				<p class=a align=left
+					style='margin-top: 0cm; margin-right: -32.6pt; margin-bottom: 0cm; margin-left: 0cm; margin-bottom: .0001pt; text-align: left; text-indent: -36.3pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span style="font-family: 바탕; color: black;">-</span><span
+						style="font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						- 회사로부터 개통 및 유지보수 업무를 위탁받은 업체</span>
+				</p>
+				<p class=a align=left
+					style='margin-top: 0cm; margin-right: -32.6pt; margin-bottom: 0cm; margin-left: 0cm; margin-bottom: .0001pt; text-align: left; text-indent: -36.3pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span style="font-family: 바탕; color: black;">-</span><span
+						style="font-family: 'Times New Roman';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						- 114번호안내 및 전화번호부 발행을 위탁받은 업체</span>
+				</p>
+			</td>
+			<td width=237 valign=top
+				style='width: 177.7pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0cm 5.4pt 0cm 5.4pt; height: 204.65pt'>
+				<p class=MsoNormal align=left
+					style='margin-top: 0cm; margin-right: -18.5pt; margin-bottom: 0cm; margin-left: 88.9pt; margin-bottom: .0001pt; text-align: left; text-indent: -90.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>㈜KCT, (주)플랜티넷</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='margin-top: 0cm; margin-right: 3.6pt; margin-bottom: 0cm; margin-left: 2.75pt; margin-bottom: .0001pt; text-align: left; text-indent: -3.85pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>㈜디아이에스</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='margin-top: 0cm; margin-right: 3.6pt; margin-bottom: 0cm; margin-left: 2.75pt; margin-bottom: .0001pt; text-align: left; text-indent: -3.85pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>㈜케이블웍스,㈜제주네트웍스</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='margin-top: 0cm; margin-right: 3.6pt; margin-bottom: 0cm; margin-left: 2.75pt; margin-bottom: .0001pt; text-align: left; text-indent: -3.85pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>한국인포서비스㈜,한국인포데이타㈜,KT하이텔㈜,한국전화번호부(주)</span>
+				</p>
+				<p class=MsoNormal align=left
+					style='text-align: left; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+					<span>&nbsp;</span>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>6. 수집한 개인정보의 보유 및 이용기간</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>고객의 개인정보는 개인정보의 수집목적 또는 제공받은 목적이 달성되면 파기하는 것을 원칙으로 합니다.
+			다만, 아래의 경우 회원정보를 보관합니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 상법, 전자 상거래등에서의 소비자보호에 관한 법률등 관계법령의 규정에 의하여 보존할 필요가 있는
+			경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2) 보유기간을 미리 정당한 절차에 다라 미리 고지하거나 명시한 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3) 개별적으로 동의를 받은 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>이 경우 회사는 보관하는 정보를 그 보관의 목적으로만 이용합니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 계약 또는 청약철회등에 관한 기록 : 5년 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2) 대금결제 및 재화등의 공급에 관한 기록 : 5년 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3) 소비자의불만 또는 분쟁처리에 관한 기록 : 3년 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span><br /> 7. 개인정보의 파기 및 절차방법</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사는 원칙적으로 개인정보 수집 및 이용목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다.
+			파기절차 및 방법은 다음과 같습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 파기절차 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 회원정보수정의 목적이 달성된 후 내부 방침 및 기타 관련 법령에 의한 정보보호 사유에 따라 일정기간
+			저장된 후 파기 되어집니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 동 개인정보는 법률에 의한 경우가 아니고서는 보유되어지는 이외의 다른 목적으로 이용되지 않습니다.
+		</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 단, KCTV는 자체적인 마케팅 분석을 위해서는 사용할 수 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2) 파기방법 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 종이에 출력된 개인정보는 분쇄기로 분쇄하거나 소각 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>- 전자적 파일형태로 저장된 개인정보는 기록을 재생할 수 없는 기술적 방법을 사용하여 삭제 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>8. 이용자 및 법정 대리인의 권리와 그 행사방법</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>KCTV는 고객의 개인정보를 최대한 존중. 보호합니다. KCTV는 고객이 인터넷 홈페이지에서 자신의
+			개인정보에 대한 수집, 이용, 제공에 대한 동의철회를 하거나 열람 또는 정정을 수행할 수 있도록 필요한 조치를 취합니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>언제든지 등록되어 있는 고객의 개인정보를 열람하거나 정정하실 수 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>개인정보관리책임자나 담당자에게 서면, 전화, 또는 E-mail로 연락하시면 지체없이 조처하겠습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>고객이 개인정보의 오류에 대한 정정을 요청하신 경우에는 정정을 완료하기 전까지 당해 개인정보를 이용
+			또는 제공하지 않습니다. 또한 잘못된 개인정보를 제 3 자에게 이미 제공한 경우에는 정정처리결과를 제 3 자에게 지체없이
+			통지하여 정정하도록 하겠습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>단, 다음의 경우에는 개인정보의 열람 및 정정을 제한할 수 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 본인 또는 제 3 자의 생명, 신체, 재산 또는 권익을 현저하게 해할 우려가 있는 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2) 당해 서비스제공자의 업무에 현저한 지장을 미칠 우려가 있는 경우 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>3) 법령에 위반하는 경우 등 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회사는 이용자의 요청에 의해 해지 또는 삭제된 개인정보는 “수집한 개인정보의 보유 및 이용기간”에
+			명시된 바에 따라 처리하고 그 외의 용도로 열람 또는 이용할 수 없도록 처리하고 있습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>가. 임의대리인의 권리행사 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>KCTV는 고객이 지정한 대리인이 방문하여 열람 또는 정정을 요구하는 경우에는 고객의 진정한 대리인인지
+			여부를 확인하여야 하며, 이를 위해 대리관계를 나타내는 서류등을 요구할 수도 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>나. 법정대리인의 권리행사 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>만 14세미만 아동(이하 ‘아동’이라 함)의 회원가입은 아동이 이해하기 쉬운 평이한 표현으로 작성된
+			별도의 양식을 통해 이루어지고 개인정보수집은 반드시 법정대리인의 동의를 구하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>KCTV는 법정대리인의 동의를 받기위해 법정대리인의 성명과 주민번호 등 최소한의 정보를 수집하고
+			있습니다. 아동의 법정대리인은 개인정보에 대한 열람, 정정 및 삭제를 요청할 수 있습니다. 이 경우개인정보 관리책임자에게
+			서면, 전화 또는 E-mail로 연락하시면 지체없이 필요한 조처를 취하겠습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>9. 개인정보 보호를 위한 기술적/관리적 조치 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>KCTV은 고객의 개인정보가 분실, 도난, 누출, 변조 또는 훼손되지 않도록 안전성 확보를 위하여
+			다음과 같이 기술적ㆍ관리적 조치를 강구하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>1) 기술적 조치 &nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>가) 개인정보는 비밀번호에 의해 보호되며, 파일 및 전송데이터를 암호화하거나 파일 잠금 기능을 사용하여
+			중요한 데이터는 별도의 보안기능을 통해 보호되고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>나) 백신 프로그램을 이용하여 컴퓨터바이러스에 의한 피해를 방지하기 위한 조치를 하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>다) 네트워크상의 개인정보를 안전하게 전송할 수 있도록 보안장치를 채택하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>라) 해킹등에 의해 고객의 개인정보가 유출되는 것을 방지하기 위해, 외부로부터 접근이 통제된 구역에
+			시스템을 설치하고, 침입을 차단하는 장치를 이용하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>2) 관리적 조치 </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>가) 회사는 고객의 개인정보에 대한 관리와 접근에 필요한 절차를 마련하여 임직원이 이를 숙지하고
+			준수하도록 하고 있으며 준수여부를 주기적으로 점검하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>나) 회사는 고객의 개인정보를 취급할 수 있는 자를 최소한으로 제한하고 접근권한을 관리하며, 교육을
+			통하여 법규 및 정책을 준수 할 수 있도록 합니다. &nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>다) 개인정보 위급자의 업무 인수인계는 보안이 유지된 상태에서 철저하게 이뤄지고 있으며, 입사 및 퇴사
+			후 개인정보 침해사고에 대한 책임을 명확하게 규정하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 22.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>라) 서비스이용 계약체결 또는 서비스제공을 위하여 고객의 은행결제계좌, 신용카드번호 등 대금결제에 관한
+			정보를 수집하거나 고객에게 제공하는 경우 당해 고객이 본인임을 확인하기 위하여 필요한 조치를 취하고 있습니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>10 .쿠키에 의한 개인정보 수집</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>KCTV제주방송은 귀하의 정보를 저장하고 찾아내는 '쿠키(cookie)'를 운용합니다. 쿠키란
+			KCTV제주방송의 웹사이트를 운영하는데 이용되는 서버가 귀하의 브라우저에 보내는 아주 작은 텍스트 파일로서 귀하의 컴퓨터
+			하드디스크에 저장됩니다</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>회원과 비회원의 접속빈도나 방문시간 등을 분석하고 이용자의 취향과 관심분야를 파악하여 타겟마케팅 및
+			서비스 개편 등의 척도로 활용합니다</span>
+	</p>
+	<p class=MsoNormal
+		style='text-indent: 11.0pt; line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>귀하는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서, 귀하는 웹 브라우저에서 옵션을 설정함으로써
+			모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수 있습니다.</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>&nbsp;</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>11. 개인정보 관리 책임자 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>고객의 개인정보를 보호하고 개인정보와 관련한 불만을 처리하기 위하여 회사는 개인정보관리책임자를 두고
+			있습니다. 개인정보와 관련한 문의사항이 있으시면 아래의 개인정보관리책임자에게 연락주시기 바랍니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>개인정보 관리책임자 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>성 명 : 김상백 기획관리이사 전화번호
+			064-741-7710(이메일:sbkim@kctvjeju.com) </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>개인정보관리자(가입자관리시스템)(이메일:choi@kctvjeju.com) </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>성 명 : 최충헌 전산팀장 전화번호 064-741-7779 <br />&nbsp;
+		</span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>12. 개인정보침해 관련 상담 및 신고 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>개인정보침해에 대한 신고ㆍ상담이 필요하신 경우에는 방송통신위원회 산하 한국정보보호진흥원(KISA)내
+			개인정보보호침해신고센터로 문의하시기 바랍니다. </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>[개인정보침해신고센터] </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>전화 : (국번없이)1336 </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>홈페이지 : www.1336.or.kr </span>
+	</p>
+	<p class=MsoNormal
+		style='line-height: 17.6pt; text-autospace: ideograph-numeric ideograph-other; word-break: keep-all'>
+		<span>13. 정책 변경에 따른 공지의무 </span>
+	</p>
+	<p class=MsoNormal>
+		<span>&nbsp;개인정보취급방침은 법령ㆍ정책 또는 보안기술의 변경에 따라 내용의 추가ㆍ삭제 및 수정이 있을
+			시에는 변경되는 개인정보보호정책을 시행하기 최소 10일전에 KCTV 홈페이지를 통해 변경이유 및 내용 등을 공지하도록
+			하겠습니다.</span>
+	</p>
+	<p class=MsoNormal>
+		<span><br /> 개인정보취급방침 시행일자 : 2009년 11월&nbsp;10일</span>
+	</p>
+</body>
+</html>

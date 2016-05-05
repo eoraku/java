@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>여름특집 1탄 - 이색적인 여름 휴가 즐기기</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/130703ins.wmv"/>
+	</Entry>
+</ASX>

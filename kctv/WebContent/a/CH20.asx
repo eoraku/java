@@ -1,0 +1,13 @@
+<ASX version ="3.0">
+<title>KCTV力林规价</title>
+
+ <Entry>
+     <Banner href ="kctvjeju.gif">
+       <Abstract>Click here to go to KCTV力林规价 site</Abstract>
+       <MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+     </Banner>
+       <ref href = "mms://media2.kctvjeju.com/live4"/>
+ </Entry>  
+
+
+</ASX>

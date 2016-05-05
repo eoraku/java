@@ -1,0 +1,151 @@
+@charset="utf-8"
+
+* {
+     margin: 0;        
+     padding: 0;
+}
+
+li{
+  list-style:none;
+}
+
+.Rule { 
+background: #f6f6a3; 
+width: 768px; 
+height: 4px;  
+} 
+
+
+/*sample1*/
+a.sample1{
+  display:block; 
+  width:768px;
+  height:509px;
+  background:url(../../images/nodejs/m1/index_001.png) no-repeat;
+}
+a:active.sample1{
+  background-position:0 -509px;
+}
+a.sample1 span{
+  display:none;
+}
+
+/*sample2*/
+a.sample2{
+  display:block; 
+  width:768px;
+  height:509px;
+  background:url(../../images/nodejs/m1/index_002.png) no-repeat;
+}
+a:active.sample2{
+  background-position:0 -511px;
+}
+a.sample2 span{
+  display:none;
+}
+
+
+
+/* s1 List */
+#s1 {
+  width: 768px;
+  height: 1004px;	
+  background:url(../../images/nodejs/m1/s1_bg.png) no-repeat;
+}
+
+.list{
+  margin:10px;
+  margin-top:0px;
+  clear:none;
+}
+
+.backlist{
+  clear:none;
+  margin-left:-8px;
+  margin-top:82px;
+}
+
+/* s2 List */
+#s2 {
+  width: 768px;
+  height: 1004px;
+  background:url(../../images/nodejs/m1/s2_bg.png) no-repeat;
+}
+
+/* player */
+.playerA{
+  position:absolute;
+  display:block; 
+  width: 780px;
+  margin-left:-42px;
+/* Edit.1 play 버튼 추가에 따른 높이조정 */
+  margin-top:34px;
+}
+
+.playerB{
+  position:absolute;
+  width: 780px;	
+  display:block; 
+  margin-left:-42px;
+/* Edit.1 play 버튼 추가에 따른 높이조정 */
+  margin-top:426px;
+}
+
+/* A player */
+a.A-p1,a.A-p2,a.A-p3,a.A-p4,a.A-p5,a.A-p6,a.A-p7{
+  display:block; 
+  width:184px;
+  height:182px;
+  float:left;
+}
+a:active.A-p1,a:active.A-p2,a:active.A-p3,a:active.A-p4,a:active.A-p5,a:active.A-p6,a:active.A-p7{
+  background-position:0 -182px;
+}
+a.A-p1 span,a.A-p2 span,a.A-p3 span,a.A-p4 span,a.A-p5 span,a.A-p6 span,a.A-p7 span{
+  display:none;
+}
+/* B player */
+a.B-p1,a.B-p2,a.B-p3,a.B-p4,a.B-p5,a.B-p6,a.B-p7{
+  display:block; 
+  width:184px;
+  height:182px;
+  float:left;
+
+}
+a:active.B-p1,a:active.B-p2,a:active.B-p3,a:active.B-p4,a:active.B-p5,a:active.B-p6,a:active.B-p7{
+  background-position:0 -182px;
+}
+a.B-p1 span,a.B-p2 span,a.B-p3 span,a.B-p4 span,a.B-p5 span,a.B-p6 span,a.B-p7 span{
+  display:none;
+}
+
+a.A-p1{
+  background:url(../../images/nodejs/m1/player/A-p1.jpg) no-repeat;}
+a.A-p2{
+  background:url(../../images/nodejs/m1/player/A-p2.jpg) no-repeat;}
+a.A-p3{
+  background:url(../../images/nodejs/m1/player/A-p3.jpg) no-repeat;}
+a.A-p4{
+  background:url(../../images/nodejs/m1/player/A-p4.jpg) no-repeat;}
+a.A-p5{
+  background:url(../../images/nodejs/m1/player/A-p5.jpg) no-repeat;}
+a.A-p6{
+  background:url(../../images/nodejs/m1/player/A-p6.jpg) no-repeat;}
+a.A-p7{
+  background:url(../../images/nodejs/m1/player/A-p7.jpg) no-repeat;}
+
+a.B-p1{
+  background:url(../../images/nodejs/m1/player/B-p1.jpg) no-repeat;}
+a.B-p2{
+  background:url(../../images/nodejs/m1/player/B-p2.jpg) no-repeat;}
+a.B-p3{
+  background:url(../../images/nodejs/m1/player/B-p3.jpg) no-repeat;}
+a.B-p4{
+  background:url(../../images/nodejs/m1/player/B-p4.jpg) no-repeat;}
+a.B-p5{
+  background:url(../../images/nodejs/m1/player/B-p5.jpg) no-repeat;}
+a.B-p6{
+  background:url(../../images/nodejs/m1/player/B-p6.jpg) no-repeat;}
+a.B-p7{
+  background:url(../../images/nodejs/m1/player/B-p7.jpg) no-repeat;}
+

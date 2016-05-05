@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>2013 디지털 케이블쇼 특집방송 - 케이블, 스마트 세상을 선도한다</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/130531ins.wmv"/>
+	</Entry>
+</ASX>

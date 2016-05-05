@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>우리 학교가 달라졌어요 - 동복분교의 아름다운 변신</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/130503ins.wmv"/>
+	</Entry>
+</ASX>

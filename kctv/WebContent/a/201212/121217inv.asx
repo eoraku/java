@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>사랑의 온도탑, 나눔과 기부문화 확산해야</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/inv/121217inv.wmv"/>
+	</Entry>
+</ASX>

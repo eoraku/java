@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>WEA2013 정책토론 - 한국 풍력산업의 활성화 방안</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/rel/130305rel.wmv"/>
+	</Entry>
+</ASX>

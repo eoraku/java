@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>제3회 스마트그리드데이 - 탄소 없는 섬 제주, 세계로 미래로</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/121109ins.wmv"/>
+	</Entry>
+</ASX>

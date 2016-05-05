@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>국제자유도시 생활일본어 곤니찌와 제주(1218)</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jap/121016jap.wmv"/>
+	</Entry>
+</ASX>

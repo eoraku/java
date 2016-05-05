@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+#content_top{background:url(../images/kctvn/bg_content_title.jpg) repeat-x;}
+
+#div_board_title{margin:auto;width:700px;margin-top:10px;}
+#div_board_kctvn{margin:auto;width:700px;margin-top:10px;}
+#div_board_kctvn ul{width:680px;height:220px;padding:10px 10px 0px 10px;}
+#div_board_kctvn li{width:680px;text-align:left;}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ldg.mybatis.repository.mapper.CommentMapper">
+	<cache />
+
+	<sql id="BaseColumns">
+		comment_no AS commentNo,
+		user_id AS userId,
+		comment_content AS commentContent,
+		reg_date AS regDate
+	</sql>
+
+	<select id="selectCommentByPrimaryKey" parameterType="long" resultType="ldg.mybatis.model.Comment">
+		SELECT
+			<include refid="BaseColumns"/>
+		FROM COMMENT
+		WHERE comment_no = #{commentNo}
+	</select>
+</mapper>

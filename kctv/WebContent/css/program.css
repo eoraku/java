@@ -1,0 +1,151 @@
+@CHARSET "UTF-8";
+
+#content_top{background:url(../images/program/bg_content_title.gif) repeat-x;}
+
+#content_main{width:760px;margin-top:10px;}
+
+#program_banner{float:left;width:670px;height:78px;padding:10px;}
+#program_title{float:left;width:670px;height:18px;padding:10px;}
+
+#program_top{width:690px;height:147px;}
+#program_top li{float:left;}
+#program_top #program_left{width:13px;height:147px;}
+#program_top #program_center{width:664px;height:147px;background:url(../images/program/52-mid_bg.gif) repeat-x;}
+#program_top #program_right{width:13px;height:147px;}
+#program_center #ul_program_center{margin-left:6px;margin-top:16px;}
+#program_center #program_img{width:193px;height:113px;}
+#program_center #program_info{width:430px;height:113px;}
+#program_center #program_info #ul_program_info{margin-left:10px;}
+#program_center #program_info #ul_program_info img{position:relative;top:4px;}
+#program_center #program_info #program_info_1{width:420px;height:25px;margin-top:3px;}
+#program_center #program_info #program_info_2{width:420px;height:2px;background-color:#dddddd;}
+#program_center #program_info #program_info_3{width:420px;height:27px;margin-top:3px;}
+#program_center #program_info #program_info_3 strong{color:#49aab0}
+#program_center #program_info #program_info_4{width:420px;height:25x;}
+#program_center #program_info #program_info_5{width:420px;height:27x;}
+
+#program_tab{width:690px;height:27px;margin-top:10px;border-bottom:1px solid #6B87B7;}
+#program_tab ul{float:left;height:27px;}
+#program_tab li{float:left;height:27px;}
+#program_tab strong{color:#156ADF;}
+#program_tab .program_tab_left{width:3px;height:27px;margin-left:5px;}
+#program_tab .program_tab_menu{padding:10px;height:27px;background:url(../images/program/tab_bg_r.gif) repeat-x;text-align:center;color:#3A5E98;font-weight:bold;}
+#program_tab .program_tab_right{width:3px;height:27px;}
+
+/* 프로그램 목록 */
+.program_boxes{width:660px;clear:both;}
+.program_box{float:left;display:inline;width:200px;height:203px;padding:10px;}
+.program_box .program_image{width:200px;height:100px;margin-top:10px;}
+.program_box .program_image a{margin-left:12px;}
+.program_box .program_image img{border:2px solid #dddddd;}
+.program_box .program_infos{width:200px;height:80px;margin-top:10px;}
+
+.program_infos ul .left{float:left;display:inline;width:57px;height:25px;padding-left:7px;}
+.program_infos ul .right{float:right;display:inline;width:130px;height:23px;padding-top:2px;}
+.program_infos ul .right_title{float:right;display:inline;width:130px;height:23px;padding-top:2px;font-weight:bold;}
+
+#program_intro {float:left;width:733px;padding:15px;text-align:left;line-height:150%;}
+#program_vod {float:left;width:763px;}
+
+#program_search{width:763px;}
+#program_search div{float:left;width:760px;}
+#program_search .search_cd_title{padding-left:5px;padding-top:6px;}
+#program_search .search_cd_value{padding-left:3px;}
+#program_search ul.search_cd{float:left;width:700px;height:24px;margin-left:10px;margin-top:10px;}
+#program_search ul.search_val{float:right;width:265px;height:26px;margin-right:100px;margin-top:10px;background-color:#303D4D;}
+#program_search li{float:left;}
+#program_search #search_type{width:68px;padding-left:2px;padding-top:2px;}
+#program_search #search_text{width:150px;padding-top:2px;}
+#program_search #search_text input{width:146px;height:16px;border:1px solid gray;}
+#program_search #search_btn{width:42px;}
+#program_search #search_btn input{margin-top:3px}
+
+#program_vod_table{width:763px;padding-top:10px;}
+
+/* VOD 목록 */
+#table_vod_list{margin-left:30px;}
+#table_vod_list .td_none{width:650px;padding:20px;}
+#table_vod_list .td_img{width:120px;height:68px;padding:5px;}
+#table_vod_list .td_content{width:540px;height:58px;padding:10px;}
+#table_vod_list .ul_content{width:540px;height:58px;}
+#table_vod_list .ul_content li{float:left;width:490px;padding-left:10px;background:url(../images/common/bullet_blue.png) no-repeat 2px 5px;}
+#table_vod_list .li_title{font-weight:bold;color:#000099;padding-bottom:3px;}
+#table_vod_list .li_title span{font-weight:normal;color:#fa6c34;}
+#table_vod_list .li_firstdt{padding-bottom:3px;}
+#table_vod_list .li_viewcnt{}
+
+/* VOD 페이징 */
+#table_vod_pages{margin:auto;height:30px;}
+	#table_vod_pages td{float:left;}
+	#table_vod_pages a{float:left;padding:3px 5px 3px 5px;margin:3px;font-size:10pt;font-weight:bold;text-align:center;}
+	#table_vod_pages a:link{color:#444444;text-decoration:none;}
+	#table_vod_pages a:visited{color:#444444;text-decoration:none;}
+	#table_vod_pages a:active{color:#444444;text-decoration:none;}
+	#table_vod_pages a:hover{color:#FF7800;text-decoration:underline;}
+	#table_vod_pages div{float:left;padding:3px 5px 3px 5px;margin:3px;font-size:10pt;font-weight:bold;text-align:center;}
+	#table_vod_pages .page_curr{border:1px solid #e5e5e5;color:#FF7800;}
+	#table_vod_pages .page_prev{border:1px solid #e5e5e5;padding-left:14px;background:url(../images/board/btn_arrow_prev.gif) no-repeat 5px 7px;}
+	#table_vod_pages .page_next{border:1px solid #e5e5e5;padding-right:12px;background:url(../images/board/btn_arrow_next.gif) no-repeat 77px 7px;}
+	#table_vod_pages .page_link{border:1px solid #ffffff;}
+	#table_vod_pages .page_link.over{border-color:#e5e5e5;}
+
+/* 자전거 식객 */
+#bicycle_top{float:left;width:700px;height:360px;}
+#bicycle_top div{float:left;}
+#bicycle_top #wheel1{width:175px;height:170px;}
+#bicycle_top #top1{width:525px;height:170px;}
+#bicycle_top #top2{width:700px;height:56px;}
+#bicycle_top #top3{width:558px;height:134px;}
+#bicycle_top #wheel2{width:132px;height:134px;}
+#bicycle_menu{float:left;width:700px;height:45px;background-color:#3F3F37;}
+#bicycle_menu li{float:left;padding-left:15px;}
+
+/* 삼춘 어디감수과 */
+#sam_top{float:left;width:700px;height:310px;}
+#sam_menu{float:left;width:700px;height:40px;}
+#sam_menu li{float:left;height:40px;}
+
+/* 스페셜 피싱 */
+#fishing_top{float:left;width:700px;height:330px;}
+#fishing_menu{float:left;width:700px;height:63px;background-color:#3F3F37;}
+#fishing_menu li{float:left;}
+
+/* 임피디의 제주 공감 */
+#impd_top{float:left;width:720px;height:361px;}
+#impd_menu{float:left;width:720px;height:44px;}
+#impd_menu li{float:left;}
+
+/* CH7 편성표 */
+#program_schedule{width:670px;padding:10px;}
+#program_schedule p{float:left;margin:20px;font-size:12pt;font-weidht:bold;}
+#program_schedule div{margin-left:10px;}
+#schedule_notice{float:left;width:670px;height:18px;padding:5px;}
+#schedule_week{float:left;width:670px;height:48px;padding-left:10px;background:url(../images/program/w_sc_back.gif) no-repeat;}
+#schedule_week ul{float:left;width:581px;height:48px;margin-left:17px;}
+#schedule_week li{float:left;width:77px;height:31px;padding-left:6px;padding-top:17px;color:#666666;}
+#schedule_week li a{}
+#schedule_week li.current{background:url(../images/program/w_sc_back2.gif) no-repeat;color:#ffffff;}
+#schedule_week li.current strong{color:#ffffff;}
+#schedule_week li.current a{color:#ffffff;}
+#schedule_week strong{color:blue;}
+#schedule_head{float:left;width:614px;height:22px;margin-top:11px;padding-left:20px;padding-top:5px;border-width:2px 0px 1px 0px;border-style:solid;border-color:#666666;background-color:#eeeeee;}
+#schedule_head dt{float:left;width:60px;font-size:10pt;font-weight:bold;color:#0000dd;}
+#schedule_head dd{float:left;font-size:10pt;font-weight:bold;color:#0000dd;}
+#schedule_body{width:634px;}
+#schedule_body li{float:left;width:634px;height:20px;padding-top:5px;border-bottom:1px solid #aaaaaa;}
+#schedule_body dt{float:left;width:60px;padding-left:20px;color:#444444;}
+#schedule_body dd{float:left;color:#2b2f7d;}
+#program_icon{width:670px;padding:10px;}
+#program_icon ul{}
+#program_icon li{float:left;}
+#program_icon dl{}
+#program_icon dt{float:left;margin-top:2px;}
+#program_icon dd{float:left;margin-top:5px;margin-left:2px;}
+
+/* 아나운서 소개 */
+#program_profile{width:740px;padding:10px;}
+#program_profile dl{float:left;width:360px;height:200px;}
+#program_profile dt{float:left;width:113px;height:141px;padding:10px;}
+#program_profile dd{float:left;width:200px;padding:10px;}
+#program_profile li{float:left;width:200px;margin-top:5px;}
+#program_profile img{float:left;margin-right:5px;}

@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>2013평화아카데미 1 - 북한의 현실과 우리의 자세</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+			<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+			<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/rel/130330rel.wmv"/>
+	</Entry>
+</ASX>

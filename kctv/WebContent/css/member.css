@@ -1,0 +1,8 @@
+@CHARSET "UTF-8";
+
+#content_top{background:url(../images/member/bg_content_title.jpg) repeat-x;}
+
+#member_top_img{float:left;;width:760px;height:115px;margin-top:10px;}
+#member_title{float:left;width:760px;height:18px;margin:10px;}
+#member_terms{float:left;width:760px;margin-left:10px;}
+#member_terms iframe{width:700px;height:400px;margin:10px;padding:10px;border:3px ridge #e9f1d8;}

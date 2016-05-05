@@ -1,0 +1,10 @@
+<ASX version ="3.0">
+	<title>봄 따라~ 맛 따라~ 봄맛기행</title>
+	<Entry>
+		<Banner href ="http://www.kctvjeju.com/a/kctvjeju.gif">
+				<Abstract>클릭하시면 KCTV제주방송홈페이지로 이동합니다.</Abstract>
+				<MoreInfo href = "http://www.kctvjeju.com" target="_blank"/>
+		</Banner>
+		<ref href = "mms://media1.kctvjeju.com/jjd/130316ins.wmv"/>
+	</Entry>
+</ASX>

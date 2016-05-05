@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+
+#content_top{background:url(../images/sitemap/bg_content_title.jpg) repeat-x;}
+#sitemap_top{margin:auto;width:700px;margin-top:10px;}
+#sitemap_title{margin:auto;width:700px;margin-top:10px;}
+.sitemap_content{float:left;width:700px;margin-left:30px;margin-top:10px;}
+.sitemap_content dl{float:left;width:155px;margin:10px;}
+.sitemap_content dt{float:left;width:155px;height:40px;}
+.sitemap_content dd{float:left;width:140px;height:20px;margin-left:5px;padding-left:10px;background:url(../images/common/bullet_arrow.gif) no-repeat 0px 3px;}
+.sitemap_content a:link{color:#444444;text-decoration:none;}
+.sitemap_content a:visited{color:#444444;text-decoration:none;}
+.sitemap_content a:active{color:#444444;text-decoration:none;}
+.sitemap_content a:hover{color:#FF7800;text-decoration:underline;}

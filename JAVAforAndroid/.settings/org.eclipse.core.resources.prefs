@@ -1,4 +1,11 @@
 eclipse.preferences.version=1
+encoding//src/com/infohub/android/hello/BillBoardImageSave.java=UTF-8
 encoding//src/com/infohub/android/hello/Billbaord.java=UTF-8
+encoding//src/com/infohub/android/hello/RequestFromBillBoardArtist.java=UTF-8
+encoding//src/com/infohub/android/hello/RequestFromBillToQr200.java=UTF-8
+encoding//src/com/infohub/android/hello/RequestFromBillToQrArtist.java=UTF-8
+encoding//src/com/infohub/android/hello/RequestFromBillToQrHot.java=UTF-8
+encoding//src/com/infohub/android/hello/RequestFromBillboard200.java=UTF-8
+encoding//src/com/infohub/android/hello/RequestFromBillboardHot.java=UTF-8
 encoding//src/com/infohub/android/hello/RequestFromBillboardHot1.java=UTF-8
 encoding//src/com/infohub/android/hello/RequestFromBillboardHot2.java=UTF-8

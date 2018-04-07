@@ -9,8 +9,8 @@ package kctv.exception;
  * 에러메시지 처리 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 13.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class ErrorMsg extends RuntimeException {

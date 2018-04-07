@@ -18,8 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
  * 채널가이드 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2014. 1. 4.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

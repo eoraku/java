@@ -9,8 +9,8 @@ package kctv.web.news;
  * 뉴스 DB 사용을 위한 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class News {

@@ -24,8 +24,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * <pre>
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 16.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

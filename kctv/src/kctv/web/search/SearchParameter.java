@@ -9,8 +9,8 @@ package kctv.web.search;
  * <pre>
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 11.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class SearchParameter {

@@ -9,8 +9,8 @@ package kctv.xml;
  * 네이버 오픈 API 웹검색 RSS피드를 이용하기 위한 모델 클래스 
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 12.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class RssWeb {

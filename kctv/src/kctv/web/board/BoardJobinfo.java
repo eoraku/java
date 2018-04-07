@@ -17,8 +17,8 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
  * 게시판 추가 /삭제 와 관련한 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 30.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class BoardJobinfo implements IBoard {

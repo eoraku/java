@@ -10,8 +10,8 @@ package kctv.web.search;
  * 검색어 입력값에 대한 Model 클래스로 홈페이지 검색에서 검색어 DB 입력까지 처리할 때 사용됩니다. text_uid, text_real, text_view, text_cnt, regdate, text_use, referer, ip 에 대한 getter setter
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 11.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class SearchValue {

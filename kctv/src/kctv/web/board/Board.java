@@ -10,8 +10,8 @@ package kctv.web.board;
  * board_is_delflag 추가
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 18.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class Board {

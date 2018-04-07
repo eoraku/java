@@ -9,8 +9,8 @@ package kctv.web.common;
  * DB 삭제 쿼리 시 사용할 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class CommonDelete {

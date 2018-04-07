@@ -9,8 +9,8 @@ package kctv.web.common;
  * 파일 업로드, 리네임 관련 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class FileInfo {

@@ -39,8 +39,8 @@ import com.oreilly.servlet.MultipartRequest;
  * 게시판 동작과 관한 컨트롤러
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 30.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

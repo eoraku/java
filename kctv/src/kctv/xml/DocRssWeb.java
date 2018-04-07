@@ -12,8 +12,8 @@ import java.util.ArrayList;
  * 네이버 검색 api를 이용하여 검색어에 대한 웹 검색 결과를 받아오는 클래스 입니다. RSS피드를 이용하여 검색 결과를 받아온 후에 처리합니다.
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 12.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class DocRssWeb extends DocRss {

@@ -35,8 +35,8 @@ import java.text.SimpleDateFormat;
  * 회원가입, 휴대폰 본인인증, 아이핀 인증, 우편번호 검색, 로그인, 회원정보 수정, 로그아웃에 관련한 컨트롤을 포함함
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 13.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller
@@ -134,7 +134,7 @@ public class UserController {
 		System.out.println("통신사코드 : " + phoneCode);
 		System.out.println("핸드폰번호 : " + phoneNumber);
 		*/
-//		realName = "강우진";
+//		realName = "서유진";
 		User user = new User();
 		user.setName(realName);
 		user.setJumin(birthDate + sex);
@@ -221,7 +221,7 @@ public class UserController {
 		System.out.println("통신사코드 : " + phoneCode);
 		System.out.println("핸드폰번호 : " + phoneNumber);
 		*/
-//		realName = "강우진";
+//		realName = "서유진";
 		User user = new User();
 		user.setName(realName);
 		user.setJumin(birthDate + sex);

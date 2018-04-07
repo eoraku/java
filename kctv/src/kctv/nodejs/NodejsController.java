@@ -28,8 +28,8 @@ import org.springframework.web.servlet.ModelAndView;
  * Nodejs 사용을 위한 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 16.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

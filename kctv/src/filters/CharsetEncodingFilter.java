@@ -21,8 +21,8 @@ import javax.servlet.annotation.WebFilter;
  * 문자셋 처리
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 13.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @WebFilter("/*")

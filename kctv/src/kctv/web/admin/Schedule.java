@@ -9,8 +9,8 @@ package kctv.web.admin;
  * 관리자 페이지 CH7 편성표 관리 시 데이터 파라미터 모델로 사용되는 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 12.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class Schedule {

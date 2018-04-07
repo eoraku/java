@@ -25,8 +25,8 @@ import org.xml.sax.InputSource;
  * XML 파일을 읽기 위한 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 16.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class XPathXml {

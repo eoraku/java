@@ -11,8 +11,8 @@ import java.util.List;
  * 게시판 추가 삭제 관련 인터페이스 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 30.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public interface IBoard {

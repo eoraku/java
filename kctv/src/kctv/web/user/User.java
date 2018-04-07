@@ -11,8 +11,8 @@ package kctv.web.user;
  * User 클래스는 회원 가입시 사용되어있고 UserInfoBasic은 회원 정보 수정시 사용되고 있음
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 12.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class User {

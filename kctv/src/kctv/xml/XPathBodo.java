@@ -15,8 +15,8 @@ import org.w3c.dom.NodeList;
  * 뉴스 리스트 XML 읽기
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 16.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class XPathBodo extends XPathXml{

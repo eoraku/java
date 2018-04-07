@@ -25,8 +25,8 @@ import kctv.web.weather.National;
  * WebContent/WEB-INF/view/include 영역 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

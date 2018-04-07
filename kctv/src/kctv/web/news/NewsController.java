@@ -37,8 +37,8 @@ import kctv.web.weather.AreaSimple;
  * 뉴스 페이지 컨트롤러
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller
@@ -540,7 +540,7 @@ public class NewsController {
 		board.setBoard_contents(multi.getParameter("contents"));
 		board.setBoard_ip(request.getRemoteAddr());
 		board.setBoard_cate_uid(Integer.parseInt(multi.getParameter("category")));
-		//board_is_notice에 값이 없어 오류 발생으로 인한 default value 0 추가 2013.12.17 by kang
+		//board_is_notice에 값이 없어 오류 발생으로 인한 default value 0 추가 2013.12.17
 		board.setBoard_is_notice("0");
 		
 		sqlMapClientTemplate.insert("boardInsert",board);

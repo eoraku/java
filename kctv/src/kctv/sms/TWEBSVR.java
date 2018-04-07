@@ -9,8 +9,8 @@ package kctv.sms;
  * KCTV 상품 변경 관련 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class TWEBSVR {

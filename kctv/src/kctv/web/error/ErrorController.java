@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
  * 에러 처리 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

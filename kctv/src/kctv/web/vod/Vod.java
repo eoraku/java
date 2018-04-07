@@ -9,8 +9,8 @@ package kctv.web.vod;
  * 	VOD 리스트 저장에 사용되는 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 13.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class Vod {

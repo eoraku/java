@@ -26,8 +26,8 @@ import kctv.web.schedule.Schedule;
  * 홈페이지 프로그램 메뉴 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 31.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

@@ -9,8 +9,8 @@ package kctv.web.board;
  * 게시판 자료실 정보 이용을 위한 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 30.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class Pds {

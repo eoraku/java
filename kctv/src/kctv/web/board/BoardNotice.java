@@ -16,8 +16,8 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
  * 공지사항 게시판 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 18.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class BoardNotice implements IBoard {

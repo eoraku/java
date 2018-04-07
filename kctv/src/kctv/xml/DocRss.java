@@ -16,8 +16,8 @@ import org.w3c.dom.NodeList;
  * 검색결과 xml을 파싱하기 위해 사용하는 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 12.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class DocRss {

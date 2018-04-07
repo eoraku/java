@@ -9,8 +9,8 @@ package kctv.web.user;
  * 유저아이디 중복 검사시 사용할 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 12.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class ChkUserid {

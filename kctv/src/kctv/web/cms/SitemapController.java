@@ -20,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
  * 홈페이지 사이트맵 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 18.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

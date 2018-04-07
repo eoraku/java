@@ -14,8 +14,8 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
  * FileRenamePolicy 를 이용하여 처리되어 있으며, 확장자 처리에 대한 변경이(ext 부분 날린후 이상없는지 테스트, body + 랜덤함수이용하여 리네임 처리) 필요할 것으로 판단됨.
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class FileRenameTime implements FileRenamePolicy {

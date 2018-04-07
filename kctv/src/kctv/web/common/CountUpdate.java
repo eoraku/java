@@ -10,8 +10,8 @@ package kctv.web.common;
  * 특정 Table , Field 에 대해 Where 절을 설정 할 수 있게 만든 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class CountUpdate {

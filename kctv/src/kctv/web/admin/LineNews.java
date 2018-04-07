@@ -9,8 +9,8 @@ package kctv.web.admin;
  * 자막 뉴스를 위한 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 27.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class LineNews {

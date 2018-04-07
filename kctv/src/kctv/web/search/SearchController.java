@@ -30,8 +30,8 @@ import org.springframework.web.servlet.ModelAndView;
  * 클래스 작성은 전임자가 작성. 홈페이지 검색 부분 컨트롤러
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 11.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

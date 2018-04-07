@@ -20,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
  * 날씨페이지 컨트롤러
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 13.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

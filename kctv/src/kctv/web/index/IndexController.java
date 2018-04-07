@@ -34,8 +34,8 @@ import kctv.xml.XPathVodWeb;
  * 메인 페이지 URL 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 17.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

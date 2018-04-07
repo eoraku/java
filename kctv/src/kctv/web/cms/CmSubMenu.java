@@ -9,8 +9,8 @@ package kctv.web.cms;
  * CM_MENU 의 하위 메뉴 조회때 사용하는 모델 클래스(궂이 필요없음)
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2014. 1. 4.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class CmSubMenu {

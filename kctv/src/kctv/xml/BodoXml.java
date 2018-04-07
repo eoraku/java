@@ -9,8 +9,8 @@ package kctv.xml;
  * 뉴스기사에 대한 xml 파일 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 16.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class BodoXml {

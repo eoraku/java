@@ -24,8 +24,8 @@ import kctv.web.session.Session;
  * 컨텐츠 영역 컨트롤러 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2014. 1. 4.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

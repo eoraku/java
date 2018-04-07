@@ -553,8 +553,6 @@
 	<!-- listReport 변경
 	order by 절 board_is_notice 에서 오류 생성으로 인하여
 	sub 쿼리 중 select 문에 board_is_notice 포함
-	
-	2013.12.17 by kang
 	 -->
 	 <!-- 뉴스 제보 리스트 -->
 	<select id="listReport" parameterClass="boardParameter" resultClass="board">

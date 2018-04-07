@@ -11,8 +11,8 @@ import kctv.web.common.Common;
  * 뉴스 리스트 조회를 위한 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 27.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class NewsParameter {

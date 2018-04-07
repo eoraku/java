@@ -32,8 +32,8 @@ import com.oreilly.servlet.MultipartRequest;
  * 공통으로 사용되는 파일 업로드, 생성, 삭제, 문자셋 변경 등의 처리 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date : 2013. 12. 18.
+ * @author : 서유진
+ * @date : 
  * @version:
  */
 public class Common {

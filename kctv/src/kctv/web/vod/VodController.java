@@ -28,8 +28,8 @@ import kctv.web.common.CountUpdate;
  * VOD 서비스 컨트롤러
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 16.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 @Controller

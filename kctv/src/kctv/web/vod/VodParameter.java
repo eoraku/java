@@ -11,8 +11,8 @@ import kctv.web.common.Common;
  *	Vod 검색에 사용하기 위한 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 13.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class VodParameter {

@@ -12,8 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
  * 세션 정보 저장 클래스입니다. 일반 사용자 / 관리자 로그인 시에 세션에 아이디, 이름, 이메일, 권한을 적용합니다.
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 11.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class Session {

@@ -9,8 +9,8 @@ package kctv.web.user;
  * 회원 정보에 대한 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 12.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class UserInfoBasic {

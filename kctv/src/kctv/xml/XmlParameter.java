@@ -9,8 +9,8 @@ package kctv.xml;
  * mybatis 쿼리에 where절과 value값을 적용하기 위한 모델 클래스
  * </pre>
  * 
- * @author : 강우진
- * @date   : 2013. 12. 16.
+ * @author : 서유진
+ * @date   : 
  * @version: 
  */
 public class XmlParameter {
